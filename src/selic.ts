@@ -1,12 +1,16 @@
-const bcb = require('./bcb');
-const { CDI_SCORE, POUPANCA_PERCENT } = require('./constants');
-const { sanitize } = require('./utils');
+import { fetchCurrentSelic } from './bcb'
+import { CDI_SCORE, POUPANCA_PERCENT } from './constants'
 
-class Selic {
-  constructor(opts = {}) {
-    this.bcb = sanitize(opts.bcb, bcb);
-    this.cdiScore = sanitize(opts.cdiScore, CDI_SCORE);
-    this.poupancaPercent = sanitize(opts.poupancaPercent, POUPANCA_PERCENT);
+export default class Selic {
+  private cdiScore: number
+  private poupancaPercent: number
+
+  constructor(
+    cdiScore: number = CDI_SCORE,
+    poupancaPercent: number = POUPANCA_PERCENT
+  ) {
+    this.cdiScore = cdiScore;
+    this.poupancaPercent = poupancaPercent;
   }
 
   /**
@@ -33,7 +37,7 @@ class Selic {
   * @public
   */
   async getSelic() {
-    const selic = await this.bcb.fetchSelic();
+    const selic = await fetchCurrentSelic();
     return Number(Number(selic).toFixed(2));
   }
 
@@ -59,5 +63,3 @@ class Selic {
     return Number(Number(poupanca).toFixed(2));
   }
 }
-
-module.exports = Selic;
