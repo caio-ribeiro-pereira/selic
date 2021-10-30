@@ -44,4 +44,4 @@ export function fetchCurrentSelic(): Promise<number | never>{
 
     request.end();
   });
-};
+}
