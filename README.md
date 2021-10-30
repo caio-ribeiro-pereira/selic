@@ -6,7 +6,9 @@ A tiny lib to scrap brazilian's selic, poupança and cdi rates.
 
 ## About
 
-This is a tiny lib **(~10kb size unpacked)** compatible with **Node.js v11+**, which request the current brazilian SELIC rates and calculates CDI and Poupança rates, all values in apy (percentage per year).
+This is a tiny lib **(~10kb size unpacked)** compatible with **Node.js v10+**, which request the current brazilian SELIC rates and calculates CDI and Poupança rates, all values in apy (percentage per year).
+
+The Selic rate is fetched from https://bcb.gov.br
 
 
 ### How to install
