@@ -21,9 +21,9 @@ export class Selic {
   /**
   * Fetch and calculate the brazilian selic, poupanca and cdi rates apy
   *
-  * @returns {Array} list with selic, poupanca and cdi rates apy
+  * @returns {Promise<Rate[]>} Promise with the rate list selic, cdi and poupanca
   */
-  async scrapRates(): Promise<Rate[]> {
+  async getAllRates(): Promise<Rate[]> {
     const selic = await this.getSelicRate();
     const cdi = this.calculateCdiFromSelic(selic);
     const poupanca = this.calculatePoupancaFromSelic(selic);
