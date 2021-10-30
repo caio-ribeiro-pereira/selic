@@ -12,7 +12,15 @@ const options = {
   },
 };
 
-export function fetchCurrentSelic() {
+/**
+ * Fetch selic value from Banco Central do Brasil
+ * @returns {Promise<number | never>} current selic value
+ *
+ * @throws { Error }
+ * This exception is thrown if is not possible to parse response body
+ * or occurred error on request
+ */
+export function fetchCurrentSelic(): Promise<number | never>{
   return new Promise((resolve, reject) => {
     const request = https.get(options, (response) => {
       let body = '';
