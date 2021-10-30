@@ -1,3 +1,9 @@
+## 0.0.4
++ Feature: Added TypeScript support
++ Feature: Added ESM import
++ Update: Changed Mocha/Sinon/Chai to Jest
++ Update: Changed Sinon stubs to HTTP Nock
+
 ## 0.0.3
 + Fix badges links on readme
 + Fix user agent when requests data from bcb api
