@@ -16,11 +16,8 @@
   "keywords": [
     "rates",
     "brazilian-rates",
-    "brazilian-selic",
-    "brazilian-cdi",
-    "selic",
-    "cdi",
-    "bcb"
+    "brazilian-utils",
+    "selic"
   ],
   "devDependencies": {
     "chai": "^4.3.4",
