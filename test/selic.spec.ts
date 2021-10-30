@@ -3,7 +3,7 @@ import { BCB_API, BCB_SELIC_PATH, CDI_SCORE, POUPANCA_PERCENT } from '../src/con
 import { Selic } from '../src/selic'
 
 describe('Selic', () => {
-  describe('.scrapRates', () => {
+  describe('.getAllRates', () => {
     test('returns the selic, poupanca and cdi rates using custom options', async () => {
       const fakeSelic = 10.1;
       const fakeData = JSON.stringify([{ valor: fakeSelic }]);
@@ -14,7 +14,7 @@ describe('Selic', () => {
       const poupancaPercent = 100;
       const expectedValue = fakeSelic;
       const selic = new Selic(cdiScore, poupancaPercent);
-      const rates = await selic.scrapRates();
+      const rates = await selic.getAllRates();
 
       expect(rates[0].name).toBe('Selic');
       expect(rates[0].apy).toBe(expectedValue);
@@ -33,8 +33,9 @@ describe('Selic', () => {
       const expectedSelic = Number(Number(fakeSelic).toFixed(2));
       const expectedCdi = Number(Number(fakeSelic - CDI_SCORE).toFixed(2));
       const expectedPoupanca = Number(Number((fakeSelic / 100) * POUPANCA_PERCENT).toFixed(2));
+
       const selic = new Selic();
-      const rates = await selic.scrapRates();
+      const rates = await selic.getAllRates();
 
       expect(rates[0].name).toBe('Selic');
       expect(rates[0].apy).toBe(expectedSelic);
@@ -51,7 +52,7 @@ describe('Selic', () => {
 
       const selic = new Selic();
 
-      await expect(selic.scrapRates()).rejects.toThrow('Parse error');
+      await expect(selic.getAllRates()).rejects.toThrow('Parse error');
     });
 
     test('raises error when bcb scraps fail', async () => {
@@ -59,7 +60,7 @@ describe('Selic', () => {
 
       const selic = new Selic();
 
-      await expect(selic.scrapRates()).rejects.toThrow('Request error');
+      await expect(selic.getAllRates()).rejects.toThrow('Request error');
     });
   });
 
