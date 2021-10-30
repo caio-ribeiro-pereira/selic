@@ -10,7 +10,7 @@
 + Feature: added `selic.getPoupancaRate()`
 
 ## 0.0.5
-+ Fix added Types support on build
++ Fix added `Types` support on build
 
 ## 0.0.4
 + Feature: Added `TypeScript` support
@@ -24,7 +24,7 @@
 
 ## 0.0.2
 + Update readme and badges
-+ Update node versions for TravisCI
++ Update node versions for `TravisCI`
 
 ## 0.0.1
 + First commit
