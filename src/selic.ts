@@ -70,7 +70,7 @@ export class Selic {
   * @param {number} selic selic rate apy for calculation
   * @returns {Number} cdi rates apy
   */
-  calculateCdiFromSelic(selic: number): number {
+  private calculateCdiFromSelic(selic: number): number {
     const cdi = selic - this.cdiScore;
     return Number(Number(cdi).toFixed(2));
   }
@@ -81,7 +81,7 @@ export class Selic {
   * @param {number} selic selic rate apy for calculation
   * @returns {Number} poupanca rates apy
   */
-  calculatePoupancaFromSelic(selic: number): number {
+  private calculatePoupancaFromSelic(selic: number): number {
     const poupanca = (selic / 100) * this.poupancaPercent;
     return Number(Number(poupanca).toFixed(2));
   }
