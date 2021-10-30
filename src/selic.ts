@@ -39,12 +39,12 @@ export class Selic {
     return this.calculatePoupancaFromSelic(selic);
   }
 
-  calculateCdiFromSelic(selic: number = 0) {
+  private calculateCdiFromSelic(selic: number = 0) {
     const cdi = selic - this.cdiScore;
     return Number(Number(cdi).toFixed(2));
   }
 
-  calculatePoupancaFromSelic(selic: number = 0) {
+  private calculatePoupancaFromSelic(selic: number = 0) {
     const poupanca = (selic / 100) * this.poupancaPercent;
     return Number(Number(poupanca).toFixed(2));
   }
