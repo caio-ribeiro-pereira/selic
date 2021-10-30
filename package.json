@@ -1,6 +1,6 @@
 {
   "name": "selic",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A tiny lib to scrap brazilian's selic, poupança and cdi rates",
   "main": "index.js",
   "scripts": {
