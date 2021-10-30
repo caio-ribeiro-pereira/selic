@@ -36,4 +36,4 @@ export function fetchCurrentSelic() {
 
     request.end();
   });
-};
+}

@@ -9,7 +9,7 @@ describe('Selic', () => {
       const fakeData = JSON.stringify([{ valor: fakeSelic }]);
 
       nock(BCB_API).get(BCB_SELIC_PATH).reply(200, fakeData);
-      
+
       const cdiScore = 0;
       const poupancaPercent = 100;
       const expectedValue = fakeSelic;
@@ -29,13 +29,13 @@ describe('Selic', () => {
       const fakeData = JSON.stringify([{ valor: fakeSelic }]);
 
       nock(BCB_API).get(BCB_SELIC_PATH).reply(200, fakeData);
-      
+
       const expectedSelic = Number(Number(fakeSelic).toFixed(2));
       const expectedCdi = Number(Number(fakeSelic - CDI_SCORE).toFixed(2));
       const expectedPoupanca = Number(Number((fakeSelic / 100) * POUPANCA_PERCENT).toFixed(2));
       const selic = new Selic();
       const rates = await selic.scrapRates();
-        
+
       expect(rates[0].name).toBe('Selic');
       expect(rates[0].apy).toBe(expectedSelic);
       expect(rates[1].name).toBe('CDI');
@@ -69,7 +69,7 @@ describe('Selic', () => {
       const fakeData = JSON.stringify([{ valor: fakeSelic }]);
 
       nock(BCB_API).get(BCB_SELIC_PATH).reply(200, fakeData);
-      
+
       const selic = new Selic();
 
       const value = await selic.getSelicRate();
@@ -83,15 +83,15 @@ describe('Selic', () => {
       nock(BCB_API).get(BCB_SELIC_PATH).reply(200, fakeData);
 
       const selic = new Selic();
-      
+
       await expect(selic.getSelicRate()).rejects.toThrow('Parse error');
     });
-    
+
     test('raises error when bcb scraps fail', async () => {
       nock(BCB_API).get(BCB_SELIC_PATH).replyWithError('Api fails');
 
       const selic = new Selic();
-      
+
       await expect(selic.getSelicRate()).rejects.toThrow('Request error');
     });
   });
@@ -102,7 +102,7 @@ describe('Selic', () => {
       const fakeData = JSON.stringify([{ valor: fakeSelic }]);
 
       nock(BCB_API).get(BCB_SELIC_PATH).reply(200, fakeData);
-      
+
       const selic = new Selic();
 
       const value = await selic.getCdiRate();
@@ -116,15 +116,15 @@ describe('Selic', () => {
       nock(BCB_API).get(BCB_SELIC_PATH).reply(200, fakeData);
 
       const selic = new Selic();
-      
+
       await expect(selic.getCdiRate()).rejects.toThrow('Parse error');
     });
-    
+
     test('raises error when bcb scraps fail', async () => {
       nock(BCB_API).get(BCB_SELIC_PATH).replyWithError('Api fails');
 
       const selic = new Selic();
-      
+
       await expect(selic.getCdiRate()).rejects.toThrow('Request error');
     });
   });
@@ -135,7 +135,7 @@ describe('Selic', () => {
       const fakeData = JSON.stringify([{ valor: fakeSelic }]);
 
       nock(BCB_API).get(BCB_SELIC_PATH).reply(200, fakeData);
-      
+
       const selic = new Selic();
 
       const value = await selic.getPoupancaRate();
@@ -149,15 +149,15 @@ describe('Selic', () => {
       nock(BCB_API).get(BCB_SELIC_PATH).reply(200, fakeData);
 
       const selic = new Selic();
-      
+
       await expect(selic.getPoupancaRate()).rejects.toThrow('Parse error');
     });
-    
+
     test('raises error when bcb scraps fail', async () => {
       nock(BCB_API).get(BCB_SELIC_PATH).replyWithError('Api fails');
 
       const selic = new Selic();
-      
+
       await expect(selic.getPoupancaRate()).rejects.toThrow('Request error');
     });
   });
@@ -169,7 +169,7 @@ describe('Selic', () => {
 
       const cdi = selic.calculateCdiFromSelic(selicValue);
       const expected = Number(Number(selicValue - CDI_SCORE).toFixed(2));
-      
+
       expect(cdi).toBe(expected);
     });
 
@@ -180,7 +180,7 @@ describe('Selic', () => {
 
       const cdi = selic.calculateCdiFromSelic(selicValue);
       const expected = Number(Number(selicValue - cdiScore).toFixed(2));
-      
+
       expect(cdi).toBe(expected);
     });
   });
@@ -192,7 +192,7 @@ describe('Selic', () => {
 
       const poupanca = selic.calculatePoupancaFromSelic(selicValue);
       const expected = Number(Number((selicValue / 100) * POUPANCA_PERCENT).toFixed(2));
-      
+
       expect(poupanca).toBe(expected);
     });
 
@@ -203,7 +203,7 @@ describe('Selic', () => {
 
       const poupanca = selic.calculatePoupancaFromSelic(selicValue);
       const expected = Number(Number((selicValue / 100) * poupancaPercent).toFixed(2));
-      
+
       expect(poupanca).toBe(expected);
     });
   });

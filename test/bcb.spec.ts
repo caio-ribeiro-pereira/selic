@@ -9,7 +9,7 @@ describe('bcb', () => {
       const fakeData = JSON.stringify([{ valor: fakeSelic }]);
 
       nock(BCB_API).get(BCB_SELIC_PATH).reply(200, fakeData);
-      
+
       const selic = await fetchCurrentSelic();
       expect(selic).toBe(fakeSelic);
     });
@@ -18,7 +18,7 @@ describe('bcb', () => {
       const fakeData = JSON.stringify([]);
 
       nock(BCB_API).get(BCB_SELIC_PATH).reply(200, fakeData);
-    
+
       try {
         await fetchCurrentSelic();
       } catch (err) {
@@ -30,7 +30,7 @@ describe('bcb', () => {
       const fakeData = '<>INVALID</>';
 
       nock(BCB_API).get(BCB_SELIC_PATH).reply(200, fakeData);
-      
+
       try {
         await fetchCurrentSelic();
       } catch (err) {
@@ -40,7 +40,7 @@ describe('bcb', () => {
 
     it('raises "Request error" when request fails', async () => {
       nock(BCB_API).get(BCB_SELIC_PATH).replyWithError('Api fails');
-      
+
       try {
         await fetchCurrentSelic();
       } catch (err) {
