@@ -23,7 +23,6 @@ const bcb = {
 
         response.on('end', () => {
           try {
-            console.log(body);
             const data = JSON.parse(body);
             const selic = data[0].valor;
             return resolve(selic);
