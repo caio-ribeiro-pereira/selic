@@ -1,6 +1,11 @@
 import { fetchCurrentSelic } from './bcb'
 import { CDI_SCORE, POUPANCA_PERCENT } from './constants'
 
+type Rate = {
+  name: string,
+  apy: number,
+}
+
 export class Selic {
   private cdiScore: number
   private poupancaPercent: number
