@@ -1,3 +1,6 @@
+## 0.0.5
++ Fix added Types support on build
+
 ## 0.0.4
 + Feature: Added TypeScript support
 + Feature: Added ESM import
