@@ -38,7 +38,7 @@ const { Selic } = require('selic');
 ``` javascript
 (async () => {
   const selic = new Selic();
-  const rates = await selic.scrapRates();
+  const rates = await selic.getAllRates();
   /*
    * [
    *  { name: 'Selic', apy: 7.75 },

@@ -1,6 +1,6 @@
 {
   "name": "selic",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A tiny lib to scrap brazilian's selic, poupança and cdi rates",
   "scripts": {
     "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
@@ -20,7 +20,7 @@
   "author": "Caio Ribeiro Pereira",
   "license": "MIT",
   "engines": {
-    "node": ">= 10.0.0"
+    "node": ">= 11.0.0"
   },
   "repository": "https://github.com/caio-ribeiro-pereira/selic",
   "bugs": {
@@ -38,7 +38,6 @@
     "@typescript-eslint/eslint-plugin": "^5.2.0",
     "@typescript-eslint/parser": "^5.2.0",
     "eslint": "^8.1.0",
-    "eslint-config-airbnb-base": "^14.2.1",
     "jest": "^27.3.1",
     "nock": "^13.1.4",
     "ts-jest": "^27.0.7",

@@ -16,7 +16,7 @@ const options = {
  * Fetch selic value from Banco Central do Brasil
  * @returns {Promise<number | never>} current selic value
  *
- * @throws { Error }
+ * @throws {Error}
  * This exception is thrown if is not possible to parse response body
  * or occurred error on request
  */
