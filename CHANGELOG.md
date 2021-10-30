@@ -1,7 +1,7 @@
 ## 0.0.7
 + Refactor: renamed scrapRates() to getAllRates() thanks by [maico910](https://github.com/caio-ribeiro-pereira/selic/pull/5)
 + Refactor: Drop support Node v10
-+ Refactor: Added support to Node v11, v13, v15 and v17
++ Refactor: Added support to Node v11, v15 and v17
 + Refactor: removed eslint-airbnb-base
 
 ## 0.0.6
