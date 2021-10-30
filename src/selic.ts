@@ -1,7 +1,7 @@
 import { fetchCurrentSelic } from './bcb'
 import { CDI_SCORE, POUPANCA_PERCENT } from './constants'
 
-export default class Selic {
+export class Selic {
   private cdiScore: number
   private poupancaPercent: number
 
@@ -14,7 +14,7 @@ export default class Selic {
   }
 
   async scrapRates() {
-    const selic = await this.getSelic();
+    const selic = await this.getSelicRate();
     const cdi = this.calculateCdiFromSelic(selic);
     const poupanca = this.calculatePoupancaFromSelic(selic);
     return [
@@ -24,17 +24,27 @@ export default class Selic {
     ];
   }
 
-  async getSelic() {
+  async getSelicRate() {
     const selic = await fetchCurrentSelic();
     return Number(Number(selic).toFixed(2));
   }
 
-  calculateCdiFromSelic(selic = 0) {
+  async getCdiRate() {
+    const selic = await this.getSelicRate();
+    return this.calculateCdiFromSelic(selic);
+  }
+
+  async getPoupancaRate() {
+    const selic = await this.getSelicRate();
+    return this.calculatePoupancaFromSelic(selic);
+  }
+
+  calculateCdiFromSelic(selic: number = 0) {
     const cdi = selic - this.cdiScore;
     return Number(Number(cdi).toFixed(2));
   }
 
-  calculatePoupancaFromSelic(selic = 0) {
+  calculatePoupancaFromSelic(selic: number = 0) {
     const poupanca = (selic / 100) * this.poupancaPercent;
     return Number(Number(poupanca).toFixed(2));
   }

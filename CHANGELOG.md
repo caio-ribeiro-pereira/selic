@@ -1,3 +1,8 @@
+## 0.0.6
++ Feature: changed import Selic to import { Selic } from 'selic'
++ Feature: added selic.getCdiRate()
++ Feature: added selic.getPoupancaRate()
+
 ## 0.0.5
 + Fix added Types support on build
 
