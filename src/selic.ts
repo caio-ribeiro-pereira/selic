@@ -13,7 +13,7 @@ export class Selic {
     this.poupancaPercent = poupancaPercent;
   }
 
-  async scrapRates() {
+  async getAllRates() {
     const selic = await this.getSelicRate();
     const cdi = this.calculateCdiFromSelic(selic);
     const poupanca = this.calculatePoupancaFromSelic(selic);
@@ -39,12 +39,12 @@ export class Selic {
     return this.calculatePoupancaFromSelic(selic);
   }
 
-  calculateCdiFromSelic(selic: number = 0) {
+  calculateCdiFromSelic(selic = 0) {
     const cdi = selic - this.cdiScore;
     return Number(Number(cdi).toFixed(2));
   }
 
-  calculatePoupancaFromSelic(selic: number = 0) {
+  calculatePoupancaFromSelic(selic = 0) {
     const poupanca = (selic / 100) * this.poupancaPercent;
     return Number(Number(poupanca).toFixed(2));
   }
