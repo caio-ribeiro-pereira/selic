@@ -1,14 +1,14 @@
 # Selic
 
-[![Donate via Paypal](https://img.shields.io/badge/donate-paypal-blue)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L8MUNAKECUULY&source=url) [![Build Status](https://app.travis-ci.com/caio-ribeiro-pereira/selic.svg?branch=main)](https://app.travis-ci.com/caio-ribeiro-pereira/selic) ![GitHub](https://img.shields.io/github/license/caio-ribeiro-pereira/selic) ![npm](https://img.shields.io/npm/v/selic) ![GitHub stars](https://img.shields.io/github/stars/caio-ribeiro-pereira/selic) ![GitHub forks](https://img.shields.io/github/forks/caio-ribeiro-pereira/selic)
+[![Donate via Paypal](https://img.shields.io/badge/donate-paypal-blue)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L8MUNAKECUULY&source=url) [![Build Status](https://app.travis-ci.com/caio-ribeiro-pereira/selic.svg?branch=main)](https://app.travis-ci.com/caio-ribeiro-pereira/selic) [![License](https://img.shields.io/github/license/caio-ribeiro-pereira/selic)](https://raw.githubusercontent.com/caio-ribeiro-pereira/selic/main/LICENSE) [![npm](https://img.shields.io/npm/v/selic)](https://www.npmjs.com/package/selic) [![GitHub stars](https://img.shields.io/github/stars/caio-ribeiro-pereira/selic)](https://github.com/caio-ribeiro-pereira/selic) [![GitHub forks](https://img.shields.io/github/forks/caio-ribeiro-pereira/selic)](https://github.com/caio-ribeiro-pereira/selic)
 
 A tiny lib to scrap brazilian's selic, poupança and cdi rates.
 
 ## About
 
-This is a tiny lib **(~7kb size unpacked)** compatible with **Node.js v10+**, which request the current brazilian SELIC rates and calculates CDI and Poupança rates, all values in apy (percentage per year).
+This is a tiny lib **(~6kb size unpacked)** compatible with **Node.js v10+**, which request the current brazilian SELIC rates and calculates CDI and Poupança rates, all values in apy (percentage per year).
 
-The Selic rate is fetched from https://bcb.gov.br
+The Selic rate is fetched from [Banco Central do Brasil](https://bcb.gov.br)
 
 
 ### How to install
