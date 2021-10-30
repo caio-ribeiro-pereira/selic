@@ -1,6 +1,6 @@
 {
   "name": "selic",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A tiny lib to scrap brazilian's selic, poupança and cdi rates",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "author": "Caio Ribeiro Pereira",
   "license": "MIT",
   "engines": {
-    "node": ">= 11.0.0"
+    "node": ">= 10.0.0"
   },
   "repository": "https://github.com/caio-ribeiro-pereira/selic",
   "keywords": [
