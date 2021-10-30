@@ -3,19 +3,26 @@
   "version": "0.0.3",
   "description": "A tiny lib to scrap brazilian's selic, poupança and cdi rates",
   "scripts": {
-    "prebuild": "rimraf dist",
-    "build": "tsc",
+    "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
-    "lint": "eslint \"{src,test}/**/*.ts\" --fix"
+    "lint": "eslint \"{src,test}/**/*.ts\" --fix",
+    "prebuild": "rimraf dist",
+    "build": "npm run tsc",
+    "prepublish": "npm run tsc"
   },
+  "main": "./dist/cjs/selic.js",
+  "module": "./dist/esm/selic.js",
   "author": "Caio Ribeiro Pereira",
   "license": "MIT",
   "engines": {
     "node": ">= 10.0.0"
   },
   "repository": "https://github.com/caio-ribeiro-pereira/selic",
+  "bugs": {
+    "url": "https://github.com/caio-ribeiro-pereira/selic/issues"
+  },
   "keywords": [
     "rates",
     "brazilian-rates",
