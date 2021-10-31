@@ -1,3 +1,9 @@
+## 0.0.8
++ Refactor: Added `Promise.all` on `getAllRates()` for parallel requests
++ Refactor: removed `calculateCdiRate()`
++ Refactor: added `cetip` module to fetch cdi rate from cetip's api
++ Fix: eslint typescript `tsconfig.json` which was not working on vscode
+
 ## 0.0.7
 + Refactor: renamed `scrapRates()` to `getAllRates()` thanks by [maico910](https://github.com/caio-ribeiro-pereira/selic/pull/5)
 + Refactor: Drop support Node `v10`
