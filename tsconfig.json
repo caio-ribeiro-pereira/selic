@@ -8,7 +8,6 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "outDir": "./dist/esm",
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
@@ -16,9 +15,7 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
-  },
-  "include": [
-    "./src"
-  ]
+    "noFallthroughCasesInSwitch": false,
+    "types": ["node", "jest"],
+  }
 }

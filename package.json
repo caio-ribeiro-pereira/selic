@@ -3,7 +3,7 @@
   "version": "0.0.7",
   "description": "A tiny lib to scrap brazilian's selic, poupança and cdi rates",
   "scripts": {
-    "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
+    "tsc": "tsc -p tsconfig-esm.json && tsc -p tsconfig-cjs.json",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
@@ -50,6 +50,7 @@
       "json",
       "ts"
     ],
+    "verbose": true,
     "rootDir": "test",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
