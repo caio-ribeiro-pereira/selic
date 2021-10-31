@@ -1,3 +1,6 @@
+## 0.0.10
++ Fix `getRatesObject()` method name
+
 ## 0.0.9
 + Feature: added `getRatesObject()`
 + Refactor: removed poupança rates

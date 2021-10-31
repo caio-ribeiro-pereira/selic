@@ -1,7 +1,7 @@
 {
   "name": "selic",
-  "version": "0.0.9",
-  "description": "A tiny lib to scrap brazilian's selic, poupança and cdi rates",
+  "version": "0.0.10",
+  "description": "A tiny lib to scrap brazilian's selic and cdi rates",
   "scripts": {
     "tsc": "tsc -p tsconfig-esm.json && tsc -p tsconfig-cjs.json",
     "test": "jest",
