@@ -56,7 +56,7 @@ const { Selic } = require('selic');
 ``` javascript
 (async () => {
   const selic = new Selic();
-  const rates = await selic.getRateObject();
+  const rates = await selic.getRatesObject();
   /*
    * { selic: 7.75, cdi: 7.65 }
    */
