@@ -1,3 +1,7 @@
+## 0.0.9
++ Feature: added `getRatesObject()`
++ Refactor: removed poupança rates
+
 ## 0.0.8
 + Refactor: Added `Promise.all` on `getAllRates()` for parallel requests
 + Refactor: removed `calculateCdiRate()`

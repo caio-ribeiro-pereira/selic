@@ -1,48 +1,41 @@
 import { fetchCurrentSelic } from './bcb'
 import { fetchCurrentCdi } from './cetip'
-import { POUPANCA_PERCENT } from './constants'
 
-type Rate = {
+type RatesList = {
   name: string,
   apy: number,
 }
 
+type RatesObject = {
+  selic: number,
+  cdi: number,
+}
+
 export class Selic {
-  private poupancaPercent: number
-
-  constructor(
-    poupancaPercent: number = POUPANCA_PERCENT
-  ) {
-    this.poupancaPercent = poupancaPercent;
+  /**
+  * Fetch brazilian selic and cdi rates apy
+  *
+  * @returns {Promise<RatesList[]>} Promise with list of rates
+  */
+  async getAllRates(): Promise<RatesList[]> {
+    const rates = await this.getRatesObject();
+    return [
+      { name: 'Selic', apy: rates.selic },
+      { name: 'CDI', apy: rates.cdi },
+    ];
   }
 
   /**
-  * Calculate the poupanca rate from selic value
+  * Fetch brazilian selic and cdi rates apy in object
   *
-  * @param {number} selic selic rate apy for calculation
-  * @returns {number} poupanca rates apy
+  * @returns {Promise<RatesObject>} Promise with rate object { selic, cdi }
   */
-  private calculatePoupancaFromSelic(selic: number): number {
-    const poupanca = (selic / 100) * this.poupancaPercent;
-    return Number(Number(poupanca).toFixed(2));
-  }
-
-  /**
-  * Fetch and calculate the brazilian selic, poupanca and cdi rates apy
-  *
-  * @returns {Promise<Rate[]>} Promise with the rate list selic, cdi and poupanca
-  */
-  async getAllRates(): Promise<Rate[]> {
+  async getRatesObject(): Promise<RatesObject> {
     const [selic, cdi] = await Promise.all([
       this.getSelicRate(),
       this.getCdiRate(),
     ]);
-    const poupanca = this.calculatePoupancaFromSelic(selic);
-    return [
-      { name: 'Selic', apy: selic },
-      { name: 'CDI', apy: cdi },
-      { name: 'Poupança', apy: poupanca },
-    ];
+    return { selic, cdi };
   }
 
   /**
@@ -63,15 +56,5 @@ export class Selic {
   async getCdiRate(): Promise<number> {
     const cdi = await fetchCurrentCdi();
     return Number(Number(cdi).toFixed(2));
-  }
-
-  /**
-  * Fetch and calculate poupanca rate from selic value
-  *
-  * @returns {Promise<number>} fetched poupanca rates apy
-  */
-  async getPoupancaRate(): Promise<number> {
-    const selic = await this.getSelicRate();
-    return this.calculatePoupancaFromSelic(selic);
   }
 }

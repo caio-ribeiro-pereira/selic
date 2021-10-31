@@ -8,7 +8,7 @@ A tiny lib to scrap brazilian's selic, poupança and cdi rates.
 
 This is a tiny lib compatible with **Node.js v11+** and **TypeScript**, with zero dependencies, supports ES Import and CommonJS.
 
-Basically this lib fetchs the current brazilian SELIC rates and CDI, and calculates the Poupança rates, all values in apy (percentage per year).
+Basically this lib fetchs the current brazilian SELIC rates and CDI rates, all values in apy (percentage per year).
 
 The Selic rate is fetched from [Banco Central do Brasil](https://bcb.gov.br)
 The CDI rate is fetched from [CETIP](https://www2.cetip.com.br)
@@ -34,7 +34,7 @@ import { Selic } from 'selic';
 const { Selic } = require('selic');
 ```
 
-#### Fetch selic and calculate all brazilian rates
+#### Fetch selic and cdi brazilian rates in array version
 
 ``` javascript
 (async () => {
@@ -46,6 +46,19 @@ const { Selic } = require('selic');
    *  { name: 'CDI', apy: 7.65 },
    *  { name: 'Poupança', apy: 5.6 },
    * ]
+   */
+  console.log(rates);
+})()
+```
+
+#### Fetch selic and cdi brazilian rates in object version
+
+``` javascript
+(async () => {
+  const selic = new Selic();
+  const rates = await selic.getRateObject();
+  /*
+   * { selic: 7.75, cdi: 7.65 }
    */
   console.log(rates);
 })()
@@ -68,16 +81,6 @@ const { Selic } = require('selic');
   const selic = new Selic();
   const cdiValue = await selic.getCdiRate();
   console.log(cdiValue); // 7.65
-})()
-```
-
-### Get only Poupança rate
-
-``` javascript
-(async () => {
-  const selic = new Selic();
-  const poupancaValue = await selic.getPoupancaRate();
-  console.log(poupancaValue); // 5.67
 })()
 ```
 
