@@ -16,12 +16,9 @@ describe('Selic', () => {
       const selic = new Selic(cdiScore, poupancaPercent);
       const rates = await selic.getAllRates();
 
-      expect(rates[0].name).toBe('Selic');
-      expect(rates[0].apy).toBe(expectedValue);
-      expect(rates[1].name).toBe('CDI');
-      expect(rates[1].apy).toBe(expectedValue);
-      expect(rates[2].name).toBe('Poupança');
-      expect(rates[2].apy).toBe(expectedValue);
+      expect(rates.selic).toBe(expectedValue);
+      expect(rates.CDI).toBe(expectedValue);
+      expect(rates.poupanca).toBe(expectedValue);
     });
 
     test('returns the selic, poupanca and cdi rates using default options', async () => {
@@ -37,12 +34,9 @@ describe('Selic', () => {
       const selic = new Selic();
       const rates = await selic.getAllRates();
 
-      expect(rates[0].name).toBe('Selic');
-      expect(rates[0].apy).toBe(expectedSelic);
-      expect(rates[1].name).toBe('CDI');
-      expect(rates[1].apy).toBe(expectedCdi);
-      expect(rates[2].name).toBe('Poupança');
-      expect(rates[2].apy).toBe(expectedPoupanca);
+      expect(rates.selic).toBe(expectedSelic);
+      expect(rates.CDI).toBe(expectedCdi);
+      expect(rates.poupanca).toBe(expectedPoupanca);
     });
 
     test('raises error when bcb scraps parse fail', async () => {
