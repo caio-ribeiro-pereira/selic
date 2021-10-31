@@ -39,12 +39,8 @@ const { Selic } = require('selic');
 (async () => {
   const selic = new Selic();
   const rates = await selic.getAllRates();
-  /*
-   * [
-   *  { name: 'Selic', apy: 7.75 },
-   *  { name: 'CDI', apy: 7.65 },
-   *  { name: 'Poupança', apy: 5.6 },
-   * ]
+  /* 
+   *  { selic: 7.75, CDI: 7.65, poupanca: 5.6 }
    */
   console.log(rates);
 })()
