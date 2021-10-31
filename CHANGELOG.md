@@ -1,3 +1,6 @@
+## 0.0.11
++ Fix build and publish flow
+
 ## 0.0.10
 + Fix `getRatesObject()` method name
 

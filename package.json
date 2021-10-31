@@ -1,6 +1,6 @@
 {
   "name": "selic",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "A tiny lib to scrap brazilian's selic and cdi rates",
   "scripts": {
     "tsc": "tsc -p tsconfig-esm.json && tsc -p tsconfig-cjs.json",
@@ -8,9 +8,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "lint": "eslint \"{src,test}/**/*.ts\" --fix",
-    "prebuild": "rimraf dist",
-    "build": "npm run tsc",
-    "prepublish": "npm run tsc"
+    "build": "rimraf dist && npm run tsc",
+    "prepublish": "npm run build"
   },
   "main": "./dist/cjs/selic.js",
   "module": "./dist/esm/selic.js",
