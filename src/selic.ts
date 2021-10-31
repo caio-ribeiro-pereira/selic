@@ -1,5 +1,6 @@
 import { fetchCurrentSelic } from './bcb'
-import { CDI_SCORE, POUPANCA_PERCENT } from './constants'
+import { fetchCurrentCdi } from './cetip'
+import { POUPANCA_PERCENT } from './constants'
 
 type Rate = {
   name: string,
@@ -7,26 +8,12 @@ type Rate = {
 }
 
 export class Selic {
-  private cdiScore: number
   private poupancaPercent: number
 
   constructor(
-    cdiScore: number = CDI_SCORE,
     poupancaPercent: number = POUPANCA_PERCENT
   ) {
-    this.cdiScore = cdiScore;
     this.poupancaPercent = poupancaPercent;
-  }
-
-  /**
-  * Calculate the cdi rate from selic value
-  *
-  * @param {number} selic selic rate apy for calculation
-  * @returns {number} cdi rates apy
-  */
-   private calculateCdiFromSelic(selic: number): number {
-    const cdi = selic - this.cdiScore;
-    return Number(Number(cdi).toFixed(2));
   }
 
   /**
@@ -46,8 +33,10 @@ export class Selic {
   * @returns {Promise<Rate[]>} Promise with the rate list selic, cdi and poupanca
   */
   async getAllRates(): Promise<Rate[]> {
-    const selic = await this.getSelicRate();
-    const cdi = this.calculateCdiFromSelic(selic);
+    const [selic, cdi] = await Promise.all([
+      this.getSelicRate(),
+      this.getCdiRate(),
+    ]);
     const poupanca = this.calculatePoupancaFromSelic(selic);
     return [
       { name: 'Selic', apy: selic },
@@ -57,7 +46,7 @@ export class Selic {
   }
 
   /**
-  * Fetch and calculate brazilian selic rates apy
+  * Fetch brazilian selic rates apy
   *
   * @returns {Promise<number>} fetched selic rates apy
   */
@@ -67,13 +56,13 @@ export class Selic {
   }
 
   /**
-  * Fetch and calculate cdi rate from selic value
+  * Fetch cdi rate apy
   *
   * @returns {Promise<number>} fetched cdi rates apy
   */
   async getCdiRate(): Promise<number> {
-    const selic = await this.getSelicRate();
-    return this.calculateCdiFromSelic(selic);
+    const cdi = await fetchCurrentCdi();
+    return Number(Number(cdi).toFixed(2));
   }
 
   /**

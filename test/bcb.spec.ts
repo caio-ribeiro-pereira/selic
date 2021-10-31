@@ -2,22 +2,32 @@ import * as nock from 'nock'
 import { BCB_API, BCB_SELIC_PATH } from '../src/constants'
 import { fetchCurrentSelic } from '../src/bcb'
 
+let bcbNock;
+
 describe('bcb', () => {
+  beforeEach(() => {
+    bcbNock = nock(BCB_API).get(BCB_SELIC_PATH);
+  });
+
+  afterEach(() => {
+    bcbNock = null;
+  });
+
   describe('.fetchCurrentSelic', () => {
     test('returns selic value when request succeed', async () => {
-      const fakeSelic = 10.1;
-      const fakeData = JSON.stringify([{ valor: fakeSelic }]);
+      const fakeSelic = 10.11;
+      const fakeData = JSON.stringify({ conteudo: [{ MetaSelic: fakeSelic }]});
 
-      nock(BCB_API).get(BCB_SELIC_PATH).reply(200, fakeData);
+      bcbNock.reply(200, fakeData);
 
       const selic = await fetchCurrentSelic();
       expect(selic).toBe(fakeSelic);
     });
 
     it('raises "Parse error" when request succeed but response is empty', async () => {
-      const fakeData = JSON.stringify([]);
+      const fakeData = '';
 
-      nock(BCB_API).get(BCB_SELIC_PATH).reply(200, fakeData);
+      bcbNock.reply(200, fakeData);
 
       try {
         await fetchCurrentSelic();
@@ -29,7 +39,7 @@ describe('bcb', () => {
     it('raises "Parse error" when request succeed but response is invalid json', async () => {
       const fakeData = '<>INVALID</>';
 
-      nock(BCB_API).get(BCB_SELIC_PATH).reply(200, fakeData);
+      bcbNock.reply(200, fakeData);
 
       try {
         await fetchCurrentSelic();
@@ -39,7 +49,7 @@ describe('bcb', () => {
     });
 
     it('raises "Request error" when request fails', async () => {
-      nock(BCB_API).get(BCB_SELIC_PATH).replyWithError('Api fails');
+      bcbNock.replyWithError('Api fails');
 
       try {
         await fetchCurrentSelic();

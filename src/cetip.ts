@@ -1,19 +1,19 @@
 import { get } from './fetcher'
-import { BCB_HOST, BCB_SELIC_PATH } from './constants'
+import { CETIP_HOST, CETIP_CDI_PATH } from './constants'
 
 /**
- * Fetch selic value from Banco Central do Brasil
- * @returns {Promise<number | never>} current selic value in apy
+ * Fetch cdi value from CETIP
+ * @returns {Promise<number | never>} current cdi value in apy
  *
  * @throws {Error}
  * This exception is thrown if is not possible to parse response body
  * or occurred error on request
  */
-export async function fetchCurrentSelic(): Promise<number | never>{
+export async function fetchCurrentCdi(): Promise<number | never>{
   try {
     const options = {
-      hostname: BCB_HOST,
-      path: BCB_SELIC_PATH,
+      hostname: CETIP_HOST,
+      path: CETIP_CDI_PATH,
       port: 443,
       headers: {
         Accept: 'application/json',
@@ -22,8 +22,8 @@ export async function fetchCurrentSelic(): Promise<number | never>{
       },
     };
     const data = await get(options);
-    const selic = Number(data.conteudo[0].MetaSelic);
-    return selic;
+    const cdi = Number(data.taxa.replaceAll('.', '').replace(',', '.'));
+    return cdi;
   } catch (err) {
     throw err;
   }
