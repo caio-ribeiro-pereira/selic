@@ -1,3 +1,6 @@
+## 0.0.13
++ Fix build and publish flow
+
 ## 0.0.12
 + Refactor: Changed `selic.ts` class verion to module version
 + Refactor: Moved number toFixed from Selic to bcb and cetip fetchers
