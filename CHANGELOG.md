@@ -1,3 +1,8 @@
+## 0.0.12
++ Refactor: Changed `selic.ts` class verion to module version
++ Refactor: Moved number toFixed from Selic to bcb and cetip fetchers
++ Refactor: Moved types `RatesObject` and `RatesList` to `types.ts`
+
 ## 0.0.11
 + Fix build and publish flow
 

@@ -2,7 +2,7 @@
 
 [![Donate via Paypal](https://img.shields.io/badge/donate-paypal-blue)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L8MUNAKECUULY&source=url) [![Build Status](https://app.travis-ci.com/caio-ribeiro-pereira/selic.svg?branch=main)](https://app.travis-ci.com/caio-ribeiro-pereira/selic) [![License](https://img.shields.io/github/license/caio-ribeiro-pereira/selic)](https://raw.githubusercontent.com/caio-ribeiro-pereira/selic/main/LICENSE) [![npm](https://img.shields.io/npm/v/selic)](https://www.npmjs.com/package/selic) [![GitHub stars](https://img.shields.io/github/stars/caio-ribeiro-pereira/selic)](https://github.com/caio-ribeiro-pereira/selic) [![GitHub forks](https://img.shields.io/github/forks/caio-ribeiro-pereira/selic)](https://github.com/caio-ribeiro-pereira/selic)
 
-A tiny lib to scrap brazilian's selic, poupança and cdi rates.
+A tiny lib to fetch brazilian's selic and cdi rates.
 
 ## About
 
@@ -22,24 +22,23 @@ npm install --save selic
 
 ### How to use  
 
-### ESImport
+#### ESImport
 
 ``` javascript
-import { Selic } from 'selic';
+import * as selic from 'selic';
 ```
 
-### CommonJS
+#### CommonJS
 
 ``` javascript
-const { Selic } = require('selic');
+const selic = require('selic');
 ```
 
-#### Fetch selic and cdi brazilian rates in array version
+##### Fetch selic and cdi brazilian rates in list version
 
 ``` javascript
 (async () => {
-  const selic = new Selic();
-  const rates = await selic.getAllRates();
+  const rates = await selic.getRatesList();
   /*
    * [
    *  { name: 'Selic', apy: 7.75 },
@@ -50,36 +49,30 @@ const { Selic } = require('selic');
 })()
 ```
 
-#### Fetch selic and cdi brazilian rates in object version
+##### Fetch selic and cdi brazilian rates in object version
 
 ``` javascript
 (async () => {
-  const selic = new Selic();
   const rates = await selic.getRatesObject();
-  /*
-   * { selic: 7.75, cdi: 7.65 }
-   */
-  console.log(rates);
+  console.log(rates); // { selic: 7.75, cdi: 7.65 }
 })()
 ```
 
-### Get only Selic rate
+##### Get only Selic rate
 
 ``` javascript
 (async () => {
-  const selic = new Selic();
-  const selicValue = await selic.getSelicRate();
-  console.log(selicValue); // 7.75
+  const selic = await selic.getSelicRate();
+  console.log(selic); // 7.75
 })()
 ```
 
-### Get only CDI rate
+##### Get only CDI rate
 
 ``` javascript
 (async () => {
-  const selic = new Selic();
-  const cdiValue = await selic.getCdiRate();
-  console.log(cdiValue); // 7.65
+  const cdi = await selic.getCdiRate();
+  console.log(cdi); // 7.65
 })()
 ```
 
