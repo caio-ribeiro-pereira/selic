@@ -22,7 +22,8 @@ export async function fetchCurrentSelic(): Promise<number | never>{
       },
     };
     const data = await get(options);
-    const selic = Number(data.conteudo[0].MetaSelic);
+    const selicString = Number(data.conteudo[0].MetaSelic);
+    const selic = Number(Number(selicString).toFixed(2));
     return selic;
   } catch (err) {
     throw err;

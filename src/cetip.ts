@@ -22,7 +22,8 @@ export async function fetchCurrentCdi(): Promise<number | never>{
       },
     };
     const data = await get(options);
-    const cdi = Number(data.taxa.replace(/[.]/g, '').replace(',', '.'));
+    const cdiString = data.taxa.replace(/[.]/g, '').replace(',', '.');
+    const cdi = Number(Number(cdiString).toFixed(2));
     return cdi;
   } catch (err) {
     throw err;

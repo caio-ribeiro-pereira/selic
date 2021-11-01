@@ -3,7 +3,10 @@ import {
   BCB_API, BCB_SELIC_PATH,
   CETIP_API, CETIP_CDI_PATH
 } from '../src/constants'
-import { Selic } from '../src/selic'
+import {
+  getRatesObject, getRatesList,
+  getSelicRate, getCdiRate,
+} from '../src/selic'
 
 let bcbNock;
 let cetipNock;
@@ -29,11 +32,9 @@ describe('Selic', () => {
       bcbNock.reply(200, fakeDataSelic);
       cetipNock.reply(200, fakeDataCdi);
 
+      const rates = await getRatesObject();
       const expectedSelic = fakeSelic;
       const expectedCdi = fakeCdi;
-
-      const selic = new Selic();
-      const rates = await selic.getRatesObject();
 
       expect(rates).toStrictEqual({ selic: expectedSelic, cdi: expectedCdi });
     });
@@ -44,22 +45,18 @@ describe('Selic', () => {
       bcbNock.reply(200, fakeData);
       cetipNock.reply(200, fakeData);
 
-      const selic = new Selic();
-
-      await expect(selic.getRatesObject()).rejects.toThrow('Parse error');
+      await expect(getRatesObject()).rejects.toThrow('Parse error');
     });
 
     test('raises error when bcb and cetip scraps fail', async () => {
       bcbNock.replyWithError('Api fails');
       cetipNock.replyWithError('Api fails');
 
-      const selic = new Selic();
-
-      await expect(selic.getRatesObject()).rejects.toThrow('Request error');
+      await expect(getRatesObject()).rejects.toThrow('Request error');
     });
   });
 
-  describe('.getAllRates', () => {
+  describe('.getRatesList', () => {
     test('returns the selic, poupanca and cdi rates', async () => {
       const fakeSelic = 10.11;
       const fakeCdi = 11.11;
@@ -69,11 +66,9 @@ describe('Selic', () => {
       bcbNock.reply(200, fakeDataSelic);
       cetipNock.reply(200, fakeDataCdi);
 
+      const rates = await getRatesList();
       const expectedSelic = fakeSelic;
       const expectedCdi = fakeCdi;
-
-      const selic = new Selic();
-      const rates = await selic.getAllRates();
 
       expect(rates[0]).toStrictEqual({ name: 'Selic', apy: expectedSelic });
       expect(rates[1]).toStrictEqual({ name: 'CDI', apy: expectedCdi });
@@ -85,18 +80,14 @@ describe('Selic', () => {
       bcbNock.reply(200, fakeData);
       cetipNock.reply(200, fakeData);
 
-      const selic = new Selic();
-
-      await expect(selic.getAllRates()).rejects.toThrow('Parse error');
+      await expect(getRatesList()).rejects.toThrow('Parse error');
     });
 
     test('raises error when bcb and cetip scraps fail', async () => {
       bcbNock.replyWithError('Api fails');
       cetipNock.replyWithError('Api fails');
 
-      const selic = new Selic();
-
-      await expect(selic.getAllRates()).rejects.toThrow('Request error');
+      await expect(getRatesList()).rejects.toThrow('Request error');
     });
   });
 
@@ -107,10 +98,9 @@ describe('Selic', () => {
 
       bcbNock.reply(200, fakeData);
 
-      const selic = new Selic();
+      const value = await getSelicRate();
+      const expected = fakeSelic;
 
-      const value = await selic.getSelicRate();
-      const expected = Number(Number(fakeSelic).toFixed(2));
       expect(value).toBe(expected);
     });
 
@@ -119,17 +109,13 @@ describe('Selic', () => {
 
       bcbNock.reply(200, fakeData);
 
-      const selic = new Selic();
-
-      await expect(selic.getSelicRate()).rejects.toThrow('Parse error');
+      await expect(getSelicRate()).rejects.toThrow('Parse error');
     });
 
     test('raises error when bcb scraps fail', async () => {
       bcbNock.replyWithError('Api fails');
 
-      const selic = new Selic();
-
-      await expect(selic.getSelicRate()).rejects.toThrow('Request error');
+      await expect(getSelicRate()).rejects.toThrow('Request error');
     });
   });
 
@@ -140,10 +126,9 @@ describe('Selic', () => {
 
       cetipNock.reply(200, fakeData);
 
-      const selic = new Selic();
-      const value = await selic.getCdiRate();
+      const value = await getCdiRate();
+      const expected = fakeCdi;
 
-      const expected = Number(Number(fakeCdi).toFixed(2));
       expect(value).toBe(expected);
     });
 
@@ -152,17 +137,13 @@ describe('Selic', () => {
 
       cetipNock.reply(200, fakeData);
 
-      const selic = new Selic();
-
-      await expect(selic.getCdiRate()).rejects.toThrow('Parse error');
+      await expect(getCdiRate()).rejects.toThrow('Parse error');
     });
 
     test('raises error when cetip scraps fail', async () => {
       cetipNock.replyWithError('Api fails');
 
-      const selic = new Selic();
-
-      await expect(selic.getCdiRate()).rejects.toThrow('Request error');
+      await expect(getCdiRate()).rejects.toThrow('Request error');
     });
   });
 });
