@@ -1,3 +1,6 @@
+## 0.0.14
++ Feature: added IPCA rate from BCB api
+
 ## 0.0.13
 + Fix build and publish flow
 
