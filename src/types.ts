@@ -6,4 +6,5 @@ export type RatesList = {
 export type RatesObject = {
   selic: number,
   cdi: number,
+  ipca: number,
 }

@@ -1,16 +1,19 @@
 import * as nock from 'nock'
-import { BCB_API, BCB_SELIC_PATH } from '../src/constants'
-import { fetchCurrentSelic } from '../src/bcb'
+import { BCB_API, BCB_SELIC_PATH, BCB_IPCA_PATH } from '../src/constants'
+import { fetchCurrentSelic, fetchCurrentIpca } from '../src/bcb'
 
-let bcbNock;
+let bcbSelicNock;
+let bcbIpcaNock;
 
 describe('bcb', () => {
   beforeEach(() => {
-    bcbNock = nock(BCB_API).get(BCB_SELIC_PATH);
+    bcbSelicNock = nock(BCB_API).get(BCB_SELIC_PATH);
+    bcbIpcaNock = nock(BCB_API).get(BCB_IPCA_PATH);
   });
 
   afterEach(() => {
-    bcbNock = null;
+    bcbSelicNock = null;
+    bcbIpcaNock = null;
   });
 
   describe('.fetchCurrentSelic', () => {
@@ -18,7 +21,7 @@ describe('bcb', () => {
       const fakeSelic = 10.11;
       const fakeData = JSON.stringify({ conteudo: [{ MetaSelic: fakeSelic }]});
 
-      bcbNock.reply(200, fakeData);
+      bcbSelicNock.reply(200, fakeData);
 
       const selic = await fetchCurrentSelic();
       expect(selic).toBe(fakeSelic);
@@ -27,7 +30,7 @@ describe('bcb', () => {
     it('raises "Parse error" when request succeed but response is empty', async () => {
       const fakeData = '';
 
-      bcbNock.reply(200, fakeData);
+      bcbSelicNock.reply(200, fakeData);
 
       try {
         await fetchCurrentSelic();
@@ -39,7 +42,7 @@ describe('bcb', () => {
     it('raises "Parse error" when request succeed but response is invalid json', async () => {
       const fakeData = '<>INVALID</>';
 
-      bcbNock.reply(200, fakeData);
+      bcbSelicNock.reply(200, fakeData);
 
       try {
         await fetchCurrentSelic();
@@ -49,10 +52,56 @@ describe('bcb', () => {
     });
 
     it('raises "Request error" when request fails', async () => {
-      bcbNock.replyWithError('Api fails');
+      bcbSelicNock.replyWithError('Api fails');
 
       try {
         await fetchCurrentSelic();
+      } catch (err) {
+        expect(err.message).toMatch('Request error');
+      }
+    });
+  });
+
+  describe('.fetchCurrentIpca', () => {
+    test('returns ipca value when request succeed', async () => {
+      const fakeIpca = 10.11;
+      const fakeData = JSON.stringify({ conteudo: [{ taxaInflacao: fakeIpca }]});
+
+      bcbIpcaNock.reply(200, fakeData);
+
+      const ipca = await fetchCurrentIpca();
+      expect(ipca).toBe(fakeIpca);
+    });
+
+    it('raises "Parse error" when request succeed but response is empty', async () => {
+      const fakeData = '';
+
+      bcbIpcaNock.reply(200, fakeData);
+
+      try {
+        await fetchCurrentIpca();
+      } catch (err) {
+        expect(err.message).toMatch('Parse error');
+      }
+    });
+
+    it('raises "Parse error" when request succeed but response is invalid json', async () => {
+      const fakeData = '<>INVALID</>';
+
+      bcbIpcaNock.reply(200, fakeData);
+
+      try {
+        await fetchCurrentIpca();
+      } catch (err) {
+        expect(err.message).toMatch('Parse error');
+      }
+    });
+
+    it('raises "Request error" when request fails', async () => {
+      bcbIpcaNock.replyWithError('Api fails');
+
+      try {
+        await fetchCurrentIpca();
       } catch (err) {
         expect(err.message).toMatch('Request error');
       }
