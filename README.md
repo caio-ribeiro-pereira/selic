@@ -43,8 +43,7 @@ const { Selic } = require('selic');
   /*
    * [
    *  { name: 'Selic', apy: 7.75 },
-   *  { name: 'CDI', apy: 7.65 },
-   *  { name: 'Poupança', apy: 5.6 },
+   *  { name: 'CDI', apy: 7.65 }
    * ]
    */
   console.log(rates);
