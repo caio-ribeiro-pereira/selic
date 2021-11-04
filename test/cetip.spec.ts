@@ -29,8 +29,7 @@ describe('cetip', () => {
 
       cetipNock.reply(200, fakeData);
 
-      const error = async () => await fetchCurrentCdi();
-      return expect(error()).rejects.toThrow('Parse error');
+      return expect(fetchCurrentCdi()).rejects.toThrow('Parse error');
     });
 
     it('raises "Parse error" when request succeed but response is invalid json', async () => {
@@ -38,15 +37,13 @@ describe('cetip', () => {
 
       cetipNock.reply(200, fakeData);
 
-      const error = async () => await fetchCurrentCdi();
-      return expect(error()).rejects.toThrow('Parse error');
+      return expect(fetchCurrentCdi()).rejects.toThrow('Parse error');
     });
 
     it('raises "Request error" when request fails', async () => {
       cetipNock.replyWithError('Api fails');
 
-      const error = async () => await fetchCurrentCdi();
-      return expect(error()).rejects.toThrow('Request error');
+      return expect(fetchCurrentCdi()).rejects.toThrow('Request error');
     });
   });
 });

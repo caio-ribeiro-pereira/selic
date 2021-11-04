@@ -128,16 +128,12 @@ describe('Selic', () => {
       const fakeData = '<>INVALID</>';
 
       bcbSelicNock.reply(200, fakeData);
-
-      const error = async () => await getSelicRate();
-      return expect(error()).rejects.toThrow('Parse error');
+      return expect(getSelicRate()).rejects.toThrow('Parse error');
     });
 
     test('raises error when bcb scraps fail', async () => {
       bcbSelicNock.replyWithError('Api fails');
-
-      const error = async () => await getSelicRate();
-      return expect(error()).rejects.toThrow('Request error');
+      return expect(getSelicRate()).rejects.toThrow('Request error');
     });
   });
 
@@ -159,15 +155,13 @@ describe('Selic', () => {
 
       bcbIpcaNock.reply(200, fakeData);
 
-      const error = async () => await getIpcaRate();
-      return expect(error()).rejects.toThrow('Parse error');
+      return expect(getIpcaRate()).rejects.toThrow('Parse error');
     });
 
     test('raises error when bcb scraps fail', async () => {
       bcbIpcaNock.replyWithError('Api fails');
 
-      const error = async () => await getIpcaRate();
-      return expect(error()).rejects.toThrow('Request error');
+      return expect(getIpcaRate()).rejects.toThrow('Request error');
     });
   });
 
@@ -189,15 +183,13 @@ describe('Selic', () => {
 
       cetipCdiNock.reply(200, fakeData);
 
-      const error = async () => await getCdiRate();
-      return expect(error()).rejects.toThrow('Parse error');
+      return expect(getCdiRate()).rejects.toThrow('Parse error');
     });
 
     test('raises error when cetip scraps fail', async () => {
       cetipCdiNock.replyWithError('Api fails');
 
-      const error = async () => await getCdiRate();
-      return expect(error()).rejects.toThrow('Request error');
+      return expect(getCdiRate()).rejects.toThrow('Request error');
     });
   });
 });

@@ -32,8 +32,7 @@ describe('bcb', () => {
 
       bcbSelicNock.reply(200, fakeData);
 
-      const error = async () => await fetchCurrentSelic();
-      return expect(error()).rejects.toThrow('Parse error');
+      return expect(fetchCurrentSelic()).rejects.toThrow('Parse error');
     });
 
     it('raises "Parse error" when request succeed but response is invalid json', async () => {
@@ -41,15 +40,13 @@ describe('bcb', () => {
 
       bcbSelicNock.reply(200, fakeData);
 
-      const error = async () => await fetchCurrentSelic();
-      return expect(error()).rejects.toThrow('Parse error');
+      return expect(fetchCurrentSelic()).rejects.toThrow('Parse error');
     });
 
     it('raises "Request error" when request fails', async () => {
       bcbSelicNock.replyWithError('Api fails');
 
-      const error = async () => await fetchCurrentSelic();
-      return expect(error()).rejects.toThrow('Request error');
+      return expect(fetchCurrentSelic()).rejects.toThrow('Request error');
     });
   });
 
@@ -69,8 +66,7 @@ describe('bcb', () => {
 
       bcbIpcaNock.reply(200, fakeData);
 
-      const error = async () => await fetchCurrentIpca();
-      return expect(error()).rejects.toThrow('Parse error');
+      return expect(fetchCurrentIpca()).rejects.toThrow('Parse error');
     });
 
     it('raises "Parse error" when request succeed but response is invalid json', async () => {
@@ -78,15 +74,13 @@ describe('bcb', () => {
 
       bcbIpcaNock.reply(200, fakeData);
 
-      const error = async () => await fetchCurrentIpca();
-      return expect(error()).rejects.toThrow('Parse error');
+      return expect(fetchCurrentIpca()).rejects.toThrow('Parse error');
     });
 
     it('raises "Request error" when request fails', async () => {
       bcbIpcaNock.replyWithError('Api fails');
 
-      const error = async () => await fetchCurrentIpca();
-      return expect(error()).rejects.toThrow('Request error');
+      return expect(fetchCurrentIpca()).rejects.toThrow('Request error');
     });
   });
 });
