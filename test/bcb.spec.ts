@@ -32,11 +32,8 @@ describe('bcb', () => {
 
       bcbSelicNock.reply(200, fakeData);
 
-      try {
-        await fetchCurrentSelic();
-      } catch (err) {
-        expect(err.message).toMatch('Parse error');
-      }
+      const error = async () => await fetchCurrentSelic();
+      return expect(error()).rejects.toThrow('Parse error');
     });
 
     it('raises "Parse error" when request succeed but response is invalid json', async () => {
@@ -44,21 +41,15 @@ describe('bcb', () => {
 
       bcbSelicNock.reply(200, fakeData);
 
-      try {
-        await fetchCurrentSelic();
-      } catch (err) {
-        expect(err.message).toMatch('Parse error');
-      }
+      const error = async () => await fetchCurrentSelic();
+      return expect(error()).rejects.toThrow('Parse error');
     });
 
     it('raises "Request error" when request fails', async () => {
       bcbSelicNock.replyWithError('Api fails');
 
-      try {
-        await fetchCurrentSelic();
-      } catch (err) {
-        expect(err.message).toMatch('Request error');
-      }
+      const error = async () => await fetchCurrentSelic();
+      return expect(error()).rejects.toThrow('Request error');
     });
   });
 
@@ -78,11 +69,8 @@ describe('bcb', () => {
 
       bcbIpcaNock.reply(200, fakeData);
 
-      try {
-        await fetchCurrentIpca();
-      } catch (err) {
-        expect(err.message).toMatch('Parse error');
-      }
+      const error = async () => await fetchCurrentIpca();
+      return expect(error()).rejects.toThrow('Parse error');
     });
 
     it('raises "Parse error" when request succeed but response is invalid json', async () => {
@@ -90,21 +78,15 @@ describe('bcb', () => {
 
       bcbIpcaNock.reply(200, fakeData);
 
-      try {
-        await fetchCurrentIpca();
-      } catch (err) {
-        expect(err.message).toMatch('Parse error');
-      }
+      const error = async () => await fetchCurrentIpca();
+      return expect(error()).rejects.toThrow('Parse error');
     });
 
     it('raises "Request error" when request fails', async () => {
       bcbIpcaNock.replyWithError('Api fails');
 
-      try {
-        await fetchCurrentIpca();
-      } catch (err) {
-        expect(err.message).toMatch('Request error');
-      }
+      const error = async () => await fetchCurrentIpca();
+      return expect(error()).rejects.toThrow('Request error');
     });
   });
 });
