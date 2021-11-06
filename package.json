@@ -1,6 +1,6 @@
 {
   "name": "selic",
-  "version": "0.0.14",
+  "version": "0.1.0",
   "description": "A tiny lib to scrap brazilian's selic, ipca and cdi rates",
   "scripts": {
     "tsc": "tsc -p tsconfig-esm.json && tsc -p tsconfig-cjs.json",
@@ -19,7 +19,7 @@
   "author": "Caio Ribeiro Pereira",
   "license": "MIT",
   "engines": {
-    "node": ">= 11.0.0"
+    "node": ">= 12.0.0"
   },
   "repository": "https://github.com/caio-ribeiro-pereira/selic",
   "bugs": {

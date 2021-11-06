@@ -5,13 +5,13 @@
 [![Donate via Paypal](https://img.shields.io/badge/donate-paypal-blue)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L8MUNAKECUULY&source=url) [![Build Status](https://app.travis-ci.com/caio-ribeiro-pereira/selic.svg?branch=main)](https://app.travis-ci.com/caio-ribeiro-pereira/selic) [![License](https://img.shields.io/github/license/caio-ribeiro-pereira/selic)](https://raw.githubusercontent.com/caio-ribeiro-pereira/selic/main/LICENSE) [![npm](https://img.shields.io/npm/v/selic)](https://www.npmjs.com/package/selic) [![NPM Dependencies](https://badgen.net/npm/dependents/selic)](https://www.npmjs.com/package/selic)  [![Node version](https://badgen.net/npm/node/selic)](https://www.npmjs.com/package/selic) [![GitHub stars](https://img.shields.io/github/stars/caio-ribeiro-pereira/selic)](https://github.com/caio-ribeiro-pereira/selic) [![GitHub forks](https://img.shields.io/github/forks/caio-ribeiro-pereira/selic)](https://github.com/caio-ribeiro-pereira/selic)
 
 
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) ![NPM](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white) ![Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) ![Deno](https://img.shields.io/badge/Deno-464647?style=for-the-badge&logo=deno&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) ![NPM](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white) ![Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
 
 A tiny lib to fetch brazilian's selic, ipca and cdi rates.
 
 ## About
 
-This is a tiny lib compatible with **Node.js v11+** and **TypeScript**, with zero dependencies, supports ESImport and CommonJS.
+This is a tiny lib compatible with **Node.js v12+** and **Deno v1+**, with zero dependencies, supports ESImport and CommonJS.
 
 Basically this lib fetchs the current brazilian SELIC, IPCA and CDI rates, all values in apy (percentage per year).
 
@@ -20,11 +20,22 @@ The CDI rate is fetched from [CETIP](https://www2.cetip.com.br)
 
 ### How to install
 
-```
+#### For Node.js via NPM
+``` bash
 npm install --save selic
 ```
 
-### How to use  
+#### For Node.js via Yarn
+``` bash
+yarn add selic
+```
+
+### How to use
+
+#### For Deno
+``` javascript
+import * as selic from 'https://deno.land/x/selic/mod.ts';
+```
 
 #### ESImport
 

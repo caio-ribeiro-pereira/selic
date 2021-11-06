@@ -1,6 +1,9 @@
-## 0.0.15
+## 0.1.0
++ Feature: Added support for Deno.js via https://deno.land/x/selic
++ Feature: Added dependabot plugin
 + Refactor: changed test errors code thanks by [maico910](https://github.com/caio-ribeiro-pereira/selic/pull/12)
 + Refactor: update devDependencies version
++ Refactor: drop support for node v11
 
 ## 0.0.14
 + Feature: added IPCA rate from BCB api

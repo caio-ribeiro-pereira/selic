@@ -6,8 +6,6 @@ export function get(url: string, options: object = {}): Promise<any> {
       const { URL } = await import('url');
       const { hostname, pathname } = new URL(url);
       const params = { hostname, path: pathname, port: 443, ...options };
-      console.log(params);
-      console.log('========');
       const request = get(params, (response) => {
         let body = '';
   
