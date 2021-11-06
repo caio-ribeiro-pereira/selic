@@ -1,1 +1,1 @@
-export * as selic from './dist/esm/selic.js';
+export * from './dist/esm/selic.js'
