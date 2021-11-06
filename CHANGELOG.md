@@ -4,6 +4,7 @@
 + Refactor: changed test errors code thanks by [maico910](https://github.com/caio-ribeiro-pereira/selic/pull/12)
 + Refactor: update devDependencies version
 + Refactor: drop support for node v11
++ Refactor: changed travis-ci to github actions
 
 ## 0.0.14
 + Feature: added IPCA rate from BCB api
