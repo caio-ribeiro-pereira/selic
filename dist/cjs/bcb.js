@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fetchCurrentIpca = exports.fetchCurrentSelic = void 0;
-const fetcher_js_1 = require("./fetcher.js");
-const constants_js_1 = require("./constants.js");
+const fetcher_1 = require("./fetcher");
+const constants_1 = require("./constants");
 /**
  * Fetch selic value from Banco Central do Brasil
  * @returns {Promise<number | never>} current selic value in apy
@@ -13,9 +13,9 @@ const constants_js_1 = require("./constants.js");
  */
 async function fetchCurrentSelic() {
     try {
-        const url = `${constants_js_1.BCB_API}${constants_js_1.BCB_SELIC_PATH}`;
-        const options = { headers: constants_js_1.HEADERS };
-        const data = await (0, fetcher_js_1.get)(url, options);
+        const url = `${constants_1.BCB_API}${constants_1.BCB_SELIC_PATH}`;
+        const options = { headers: constants_1.HEADERS };
+        const data = await (0, fetcher_1.get)(url, options);
         const { MetaSelic } = data.conteudo[0];
         return Number(Number(MetaSelic).toFixed(2));
     }
@@ -34,9 +34,9 @@ exports.fetchCurrentSelic = fetchCurrentSelic;
  */
 async function fetchCurrentIpca() {
     try {
-        const url = `${constants_js_1.BCB_API}${constants_js_1.BCB_IPCA_PATH}`;
-        const options = { headers: constants_js_1.HEADERS };
-        const data = await (0, fetcher_js_1.get)(url, options);
+        const url = `${constants_1.BCB_API}${constants_1.BCB_IPCA_PATH}`;
+        const options = { headers: constants_1.HEADERS };
+        const data = await (0, fetcher_1.get)(url, options);
         const { taxaInflacao } = data.conteudo[0];
         return Number(Number(taxaInflacao).toFixed(2));
     }

@@ -1,5 +1,5 @@
-import { get } from './fetcher.js';
-import { BCB_API, BCB_SELIC_PATH, BCB_IPCA_PATH, HEADERS } from './constants.js';
+import { get } from './fetcher';
+import { BCB_API, BCB_SELIC_PATH, BCB_IPCA_PATH, HEADERS } from './constants';
 /**
  * Fetch selic value from Banco Central do Brasil
  * @returns {Promise<number | never>} current selic value in apy
