@@ -29,7 +29,10 @@
     "rates",
     "brazilian-rates",
     "brazilian-utils",
-    "selic"
+    "selic",
+    "cdi",
+    "ipca",
+    "financial"
   ],
   "devDependencies": {
     "@types/jest": "27.0.2",
