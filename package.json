@@ -39,6 +39,7 @@
     "eslint": "^8.1.0",
     "eslint-plugin-jest": "^25.2.2",
     "jest": "^27.3.1",
+    "jest-ts-webcompat-resolver": "^1.0.0",
     "nock": "^13.1.4",
     "ts-jest": "^27.0.7",
     "ts-node": "^10.4.0",
@@ -60,6 +61,7 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "resolver": "jest-ts-webcompat-resolver"
   }
 }

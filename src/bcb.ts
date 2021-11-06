@@ -1,5 +1,5 @@
-import { get } from './fetcher'
-import { BCB_HOST, BCB_SELIC_PATH, BCB_IPCA_PATH } from './constants'
+import { get } from './fetcher.js'
+import { BCB_API, BCB_SELIC_PATH, BCB_IPCA_PATH, HEADERS } from './constants.js'
 
 /**
  * Fetch selic value from Banco Central do Brasil
@@ -11,17 +11,11 @@ import { BCB_HOST, BCB_SELIC_PATH, BCB_IPCA_PATH } from './constants'
  */
 export async function fetchCurrentSelic(): Promise<number | never>{
   try {
+    const url = `${BCB_API}/${BCB_SELIC_PATH}`;
     const options = {
-      hostname: BCB_HOST,
-      path: BCB_SELIC_PATH,
-      port: 443,
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-      },
+      headers: HEADERS,
     };
-    const data = await get(options);
+    const data = await get(url, options);
     const { MetaSelic } = data.conteudo[0];
     return Number(Number(MetaSelic).toFixed(2));
   } catch (err) {
@@ -39,17 +33,11 @@ export async function fetchCurrentSelic(): Promise<number | never>{
  */
 export async function fetchCurrentIpca(): Promise<number | never>{
   try {
+    const url = `${BCB_API}/${BCB_IPCA_PATH}`;
     const options = {
-      hostname: BCB_HOST,
-      path: BCB_IPCA_PATH,
-      port: 443,
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-      },
+      headers: HEADERS,
     };
-    const data = await get(options);
+    const data = await get(url, options);
     const { taxaInflacao } = data.conteudo[0];
     return Number(Number(taxaInflacao).toFixed(2));
   } catch (err) {

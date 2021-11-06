@@ -10,3 +10,9 @@ export const BCB_IPCA_PATH = '/api/servico/sitebcb/indicadorinflacao';
 export const CETIP_HOST = 'www2.cetip.com.br';
 export const CETIP_API = `https://${CETIP_HOST}`;
 export const CETIP_CDI_PATH = '/ConsultarTaxaDi/ConsultarTaxaDICetip.aspx';
+
+export const HEADERS = {
+  Accept: 'application/json',
+  'Content-Type': 'application/json',
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+}
