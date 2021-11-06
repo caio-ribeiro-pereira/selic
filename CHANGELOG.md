@@ -1,3 +1,7 @@
+## 0.1.4
++ Fix: rollback extensions `.js` on import for Deno compatibility
++ Fix: rollback `jest-ts-webcompat-resolver` for jest detects `.js` extensions
+
 ## 0.1.3
 + Fix: `mod.ts` module import
 + Removed useless badges on readme
