@@ -1,13 +1,13 @@
-export async function get(url: string, options: object): Promise<any> {
-  // For Node.js environment
-  if (globalThis.process) {
-    console.log('Running Node.js environment')
-    return new Promise(async (resolve, reject) => {
+export function get(url: string, options: object = {}): Promise<any> {
+  return new Promise(async (resolve, reject) => {
+    // For Node.js environment
+    if (globalThis.process) {
       const { get } = await import('https');
       const { URL } = await import('url');
       const { hostname, pathname } = new URL(url);
-      const params = { hostname, path: pathname, ...options };
-      console.log(`https.get ${JSON.stringify(params)}`)
+      const params = { hostname, path: pathname, port: 443, ...options };
+      console.log(params);
+      console.log('========');
       const request = get(params, (response) => {
         let body = '';
   
@@ -18,10 +18,9 @@ export async function get(url: string, options: object): Promise<any> {
         response.on('end', () => {
           try {
             const data = JSON.parse(body);
-            console.log(data);
-            resolve(data);
+            return resolve(data);
           } catch {
-            reject(new Error('Parse error'));
+            return reject(new Error('Parse error'));
           }
         });
       });
@@ -29,34 +28,26 @@ export async function get(url: string, options: object): Promise<any> {
       request.on('error', () => reject(new Error('Request error')));
   
       request.end();
-    });
-  }
+      return true;
+    }
 
-  // For Deno environment
-  if (globalThis.Deno) {
-    console.log('Running Node.js environment')
-    return new Promise(async (resolve, reject) => {
+    // For Deno environment
+    if (globalThis.Deno) {
       let response = null;
       try {
-        console.log(`fetch ${url} | ${JSON.stringify(options)}`)
         response = await fetch(url, options);
       } catch {
         return reject(new Error('Request error'));
       }
-      console.log(response);
-      console.log('==============');
       if (response.ok) {
         try {
           const data = await response.json();
-          console.log(data);
           return resolve(data);
-        } catch (err) {
-          console.log('!!!!')
-          console.log(err);
+        } catch {
           return reject(new Error('Parse error'));
         }
       }
       return reject(Error('Request error'));
-    });
-  }
+    }
+  });
 }
