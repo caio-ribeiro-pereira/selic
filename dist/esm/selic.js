@@ -1,6 +1,6 @@
-import { fetchCurrentSelic, fetchCurrentIpca } from './bcb.js';
-import { fetchCurrentCdi } from './cetip.js';
-import { SELIC, CDI, IPCA } from './constants.js';
+import { fetchCurrentSelic, fetchCurrentIpca } from './bcb';
+import { fetchCurrentCdi } from './cetip';
+import { SELIC, CDI, IPCA } from './constants';
 /**
   * Fetch brazilian selic, cdi and ipca rates apy in object
   *

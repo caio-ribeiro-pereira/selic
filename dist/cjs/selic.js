@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCdiRate = exports.getIpcaRate = exports.getSelicRate = exports.getRatesList = exports.getRatesObject = void 0;
-const bcb_js_1 = require("./bcb.js");
-const cetip_js_1 = require("./cetip.js");
-const constants_js_1 = require("./constants.js");
+const bcb_1 = require("./bcb");
+const cetip_1 = require("./cetip");
+const constants_1 = require("./constants");
 /**
   * Fetch brazilian selic, cdi and ipca rates apy in object
   *
@@ -26,9 +26,9 @@ exports.getRatesObject = getRatesObject;
 async function getRatesList() {
     const { selic, cdi, ipca } = await getRatesObject();
     return [
-        { name: constants_js_1.SELIC, apy: selic },
-        { name: constants_js_1.CDI, apy: cdi },
-        { name: constants_js_1.IPCA, apy: ipca },
+        { name: constants_1.SELIC, apy: selic },
+        { name: constants_1.CDI, apy: cdi },
+        { name: constants_1.IPCA, apy: ipca },
     ];
 }
 exports.getRatesList = getRatesList;
@@ -38,7 +38,7 @@ exports.getRatesList = getRatesList;
   * @returns {Promise<number>} Selic rate
   */
 async function getSelicRate() {
-    const selic = await (0, bcb_js_1.fetchCurrentSelic)();
+    const selic = await (0, bcb_1.fetchCurrentSelic)();
     return selic;
 }
 exports.getSelicRate = getSelicRate;
@@ -48,7 +48,7 @@ exports.getSelicRate = getSelicRate;
   * @returns {Promise<number>} IPCA rate
   */
 async function getIpcaRate() {
-    const ipca = await (0, bcb_js_1.fetchCurrentIpca)();
+    const ipca = await (0, bcb_1.fetchCurrentIpca)();
     return ipca;
 }
 exports.getIpcaRate = getIpcaRate;
@@ -58,7 +58,7 @@ exports.getIpcaRate = getIpcaRate;
   * @returns {Promise<number>} CDI rate
   */
 async function getCdiRate() {
-    const cdi = await (0, cetip_js_1.fetchCurrentCdi)();
+    const cdi = await (0, cetip_1.fetchCurrentCdi)();
     return cdi;
 }
 exports.getCdiRate = getCdiRate;
