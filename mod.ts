@@ -1,1 +1,1 @@
-export * as selic from './src/selic.js';
+export * as selic from './src/selic.ts';
