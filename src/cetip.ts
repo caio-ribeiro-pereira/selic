@@ -1,5 +1,5 @@
-import { get } from './fetcher.js'
-import { CETIP_API, CETIP_CDI_PATH, HEADERS } from './constants.js'
+import { get } from './fetcher'
+import { CETIP_API, CETIP_CDI_PATH, HEADERS } from './constants'
 
 /**
  * Fetch cdi value from CETIP
