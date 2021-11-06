@@ -1,3 +1,8 @@
+## 0.1.3
++ Fix: `mod.ts` module import
++ Removed useless badges on readme
++ Removed `jest-ts-webcompat-resolver`
+
 ## 0.1.2
 + Refactor: rollback hidding `.js` extension on all imports
 + Fix: `mod.ts` now loads from `dist/esm/selic.js`
