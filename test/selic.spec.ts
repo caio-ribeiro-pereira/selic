@@ -3,11 +3,11 @@ import {
   SELIC, CDI, IPCA,
   BCB_API, BCB_SELIC_PATH, BCB_IPCA_PATH,
   CETIP_API, CETIP_CDI_PATH
-} from '../src/constants'
+} from '../src/constants.js'
 import {
   getRatesObject, getRatesList,
   getSelicRate, getCdiRate, getIpcaRate
-} from '../src/selic'
+} from '../src/selic.js'
 
 let bcbSelicNock;
 let bcbIpcaNock;

@@ -1,6 +1,6 @@
 import * as nock from 'nock'
-import { BCB_API, BCB_SELIC_PATH, BCB_IPCA_PATH } from '../src/constants'
-import { fetchCurrentSelic, fetchCurrentIpca } from '../src/bcb'
+import { BCB_API, BCB_SELIC_PATH, BCB_IPCA_PATH } from '../src/constants.js'
+import { fetchCurrentSelic, fetchCurrentIpca } from '../src/bcb.js'
 
 let bcbSelicNock;
 let bcbIpcaNock;
