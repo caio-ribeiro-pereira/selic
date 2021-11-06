@@ -1,3 +1,7 @@
+## 0.1.2
++ Refactor: rollback hidding `.js` extension on all imports
++ Fix: `mod.ts` now loads from `dist/esm/selic.js`
+
 ## 0.1.1
 + Fix deno `mod.ts` module export
 + Refactor: removed `dist` from `.gitignore`
