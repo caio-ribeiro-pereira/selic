@@ -1,4 +1,4 @@
-import { RatesObject, RatesList } from './types';
+import { RatesObject, RatesList } from './types.js';
 /**
   * Fetch brazilian selic, cdi and ipca rates apy in object
   *
