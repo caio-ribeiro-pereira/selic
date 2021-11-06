@@ -1,5 +1,5 @@
-import { get } from './fetcher'
-import { CETIP_HOST, CETIP_CDI_PATH } from './constants'
+import { get } from './fetcher.js'
+import { CETIP_API, CETIP_CDI_PATH, HEADERS } from './constants.js'
 
 /**
  * Fetch cdi value from CETIP
@@ -11,17 +11,9 @@ import { CETIP_HOST, CETIP_CDI_PATH } from './constants'
  */
 export async function fetchCurrentCdi(): Promise<number | never>{
   try {
-    const options = {
-      hostname: CETIP_HOST,
-      path: CETIP_CDI_PATH,
-      port: 443,
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-      },
-    };
-    const data = await get(options);
+    const url = `${CETIP_API}${CETIP_CDI_PATH}`;
+    const options = { headers: HEADERS };
+    const data = await get(url, options);
     const cdiString = data.taxa.replace(/[.]/g, '').replace(',', '.');
     const cdi = Number(Number(cdiString).toFixed(2));
     return cdi;
