@@ -1,3 +1,8 @@
+## 0.1.1
++ Fix deno `mod.ts` module export
++ Refactor: removed `dist` from `.gitignore`
++ Refactor: set only `ubuntu-latest` and `window-latest` for `ci.yml`
+
 ## 0.1.0
 + Feature: Added support for Deno.js via https://deno.land/x/selic
 + Feature: Added dependabot plugin
