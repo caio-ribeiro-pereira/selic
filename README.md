@@ -1,6 +1,6 @@
 # Selic
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END --> 
 [![Donate via Paypal](https://img.shields.io/badge/donate-paypal-blue)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L8MUNAKECUULY&source=url) [![Build Status](https://github.com/caio-ribeiro-pereira/selic/actions/workflows/ci.yml/badge.svg)](https://github.com/caio-ribeiro-pereira/selic/actions) [![License](https://img.shields.io/github/license/caio-ribeiro-pereira/selic)](https://raw.githubusercontent.com/caio-ribeiro-pereira/selic/main/LICENSE) [![NPM Dependencies](https://badgen.net/npm/dependents/selic)](https://www.npmjs.com/package/selic) [![GitHub stars](https://img.shields.io/github/stars/caio-ribeiro-pereira/selic)](https://github.com/caio-ribeiro-pereira/selic) [![GitHub forks](https://img.shields.io/github/forks/caio-ribeiro-pereira/selic)](https://github.com/caio-ribeiro-pereira/selic)
 
@@ -117,6 +117,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/maico910"><img src="https://avatars.githubusercontent.com/u/24510745?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Michael Wu</b></sub></a><br /><a href="https://github.com/caio-ribeiro-pereira/selic/commits?author=maico910" title="Code">💻</a></td>
+    <td align="center"><a href="https://crpwebdev.github.io"><img src="https://avatars.githubusercontent.com/u/551228?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Caio Ribeiro Pereira</b></sub></a><br /><a href="https://github.com/caio-ribeiro-pereira/selic/commits?author=caio-ribeiro-pereira" title="Code">💻</a></td>
   </tr>
 </table>
 
