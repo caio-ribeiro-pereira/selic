@@ -1,3 +1,7 @@
+## 0.1.5
++ Update all `devDependencies`
++ Update contributors on readme
+
 ## 0.1.4
 + Fix: rollback extensions `.js` on import for Deno compatibility
 + Fix: rollback `jest-ts-webcompat-resolver` for jest detects `.js` extensions
