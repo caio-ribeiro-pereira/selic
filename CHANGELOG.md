@@ -1,3 +1,6 @@
+## 0.1.6
++ Update all `devDependencies`
+
 ## 0.1.5
 + Update all `devDependencies`
 + Update contributors on readme
