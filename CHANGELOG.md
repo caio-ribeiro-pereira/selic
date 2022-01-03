@@ -1,3 +1,6 @@
+## 0.1.7
++ Update all `devDependencies`
+
 ## 0.1.6
 + Update all `devDependencies`
 
