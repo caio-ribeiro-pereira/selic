@@ -1,18 +1,21 @@
 {
   "name": "selic",
-  "version": "0.1.7",
+  "version": "1.0.0",
   "description": "A tiny lib to scrap brazilian's selic, ipca and cdi rates",
   "scripts": {
-    "tsc": "tsc -p tsconfig-esm.json && tsc -p tsconfig-cjs.json",
+    "ts": "run-p ts:*",
+    "ts:commonjs": "tsc -p tsconfig-commonjs.json",
+    "ts:es2022": "tsc -p tsconfig-es2022.json",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
-    "lint": "eslint \"{src,test}/**/*.ts\" --fix",
-    "build": "rimraf dist && npm run tsc",
+    "lint": "eslint \"{src,test}/**/*.ts\"",
+    "clear": "rimraf dist",
+    "build": "run-s clear test lint ts",
     "deploy": "npm run build && npm publish"
   },
-  "main": "./dist/cjs/selic.js",
-  "module": "./dist/esm/selic.js",
+  "main": "./dist/commonjs/selic.js",
+  "module": "./dist/es2022/selic.js",
   "files": [
     "dist/"
   ],
@@ -35,36 +38,19 @@
     "financial"
   ],
   "devDependencies": {
-    "@types/jest": "27.4.0",
-    "@types/node": "17.0.7",
-    "@typescript-eslint/eslint-plugin": "5.8.1",
-    "@typescript-eslint/parser": "5.8.1",
-    "eslint": "8.6.0",
-    "eslint-plugin-jest": "25.3.4",
-    "jest": "27.4.5",
+    "@types/jest": "28.1.3",
+    "@types/node": "18.0.0",
+    "@typescript-eslint/eslint-plugin": "5.29.0",
+    "@typescript-eslint/parser": "5.29.0",
+    "eslint": "8.18.0",
+    "eslint-plugin-jest": "26.5.3",
+    "jest": "28.1.1",
     "jest-ts-webcompat-resolver": "1.0.0",
-    "nock": "13.2.1",
-    "ts-jest": "27.1.2",
-    "ts-node": "10.4.0",
-    "typescript": "4.5.4"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "verbose": true,
-    "rootDir": "test",
-    "testRegex": ".*\\.spec\\.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
-    ],
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node",
-    "resolver": "jest-ts-webcompat-resolver"
+    "nock": "13.2.7",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
+    "ts-jest": "28.0.5",
+    "ts-node": "10.8.1",
+    "typescript": "4.7.4"
   }
 }

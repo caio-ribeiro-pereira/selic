@@ -8,11 +8,11 @@ export function get(url: string, options: object = {}): Promise<any> {
       const params = { hostname, path: pathname, port: 443, ...options };
       const request = get(params, (response) => {
         let body = '';
-  
+
         response.on('data', (chunk) => {
           body += chunk;
         });
-  
+
         response.on('end', () => {
           try {
             const data = JSON.parse(body);
@@ -22,9 +22,9 @@ export function get(url: string, options: object = {}): Promise<any> {
           }
         });
       });
-  
+
       request.on('error', () => reject(new Error('Request error')));
-  
+
       request.end();
       return true;
     }

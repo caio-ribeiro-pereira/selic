@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fetchCurrentCdi = void 0;
-const fetcher_js_1 = require("./fetcher.js");
 const constants_js_1 = require("./constants.js");
+const fetcher_js_1 = require("./fetcher.js");
 /**
  * Fetch cdi value from CETIP
  * @returns {Promise<number | never>} current cdi value in apy

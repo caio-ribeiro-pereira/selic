@@ -1,3 +1,9 @@
+## 1.0.0
++ Update all `devDependencies`
++ Refactor: npm script improvements by using `npm-run-all`
++ Refactor: moved jest config to `jest.config.js`
++ Feat: added prettier
+
 ## 0.1.7
 + Update all `devDependencies`
 

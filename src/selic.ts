@@ -1,7 +1,7 @@
 import { fetchCurrentSelic, fetchCurrentIpca } from './bcb.js'
 import { fetchCurrentCdi } from './cetip.js'
-import { RatesObject, RatesList } from './types.js'
 import { SELIC, CDI, IPCA } from './constants.js'
+import { RatesObject, RatesList } from './types.js'
 
 /**
   * Fetch brazilian selic, cdi and ipca rates apy in object

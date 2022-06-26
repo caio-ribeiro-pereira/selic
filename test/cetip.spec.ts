@@ -1,6 +1,6 @@
 import * as nock from 'nock'
-import { CETIP_API, CETIP_CDI_PATH } from '../src/constants.js'
 import { fetchCurrentCdi } from '../src/cetip.js'
+import { CETIP_API, CETIP_CDI_PATH } from '../src/constants.js'
 
 let cetipNock;
 

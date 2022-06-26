@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "es2020",
+    "module": "es2022",
     "target": "es2017",
     "declaration": true,
     "moduleResolution": "node",
@@ -16,6 +16,7 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "types": ["node", "jest"],
+    "allowJs": true,
+    "types": ["node", "jest"]
   }
 }
