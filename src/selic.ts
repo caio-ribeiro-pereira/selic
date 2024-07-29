@@ -1,5 +1,5 @@
 import { fetchCurrentSelic, fetchCurrentIpca } from './bcb.js'
-import { fetchCurrentCdi } from './cetip.js'
+import { fetchCurrentCdi } from './b3.js'
 import { SELIC, CDI, IPCA } from './constants.js'
 import { RatesObject, RatesList } from './types.js'
 

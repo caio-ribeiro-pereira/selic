@@ -2,27 +2,27 @@ import * as nock from 'nock'
 import {
   SELIC, CDI, IPCA,
   BCB_API, BCB_SELIC_PATH, BCB_IPCA_PATH,
-  CETIP_API, CETIP_CDI_PATH
-} from '../src/constants.js'
+  B3_API, B3_PATH
+} from '../../src/constants.js'
 import {
   getRatesObject, getRatesList,
   getSelicRate, getCdiRate, getIpcaRate
-} from '../src/selic.js'
+} from '../../src/selic.js'
 
 let bcbSelicNock;
 let bcbIpcaNock;
-let cetipCdiNock;
+let b3CdiNock;
 
-describe('Selic', () => {
+describe('unit/selic', () => {
   beforeEach(() => {
     bcbSelicNock = nock(BCB_API).get(BCB_SELIC_PATH);
     bcbIpcaNock = nock(BCB_API).get(BCB_IPCA_PATH);
-    cetipCdiNock = nock(CETIP_API).get(CETIP_CDI_PATH);
+    b3CdiNock = nock(B3_API).get(B3_PATH);
   });
 
   afterEach(() => {
     bcbSelicNock = null;
-    cetipCdiNock = null;
+    b3CdiNock = null;
   });
 
   describe('.getRatesObject', () => {
@@ -31,12 +31,12 @@ describe('Selic', () => {
       const fakeCdi = 11.11;
       const fakeIpca = 11.11;
       const fakeDataSelic = JSON.stringify({ conteudo: [{ MetaSelic: fakeSelic }]});
-      const fakeDataCdi = JSON.stringify({ taxa: fakeCdi.toString().replace('.', ',') });
+      const fakeDataCdi = JSON.stringify([{ rate: `${fakeCdi}`.replace('.', ','), description: 'TAXA CDI CETIP' }]);
       const fakeDataIpca = JSON.stringify({ conteudo: [{ taxaInflacao: fakeIpca }]});
 
       bcbSelicNock.reply(200, fakeDataSelic);
       bcbIpcaNock.reply(200, fakeDataIpca);
-      cetipCdiNock.reply(200, fakeDataCdi);
+      b3CdiNock.reply(200, fakeDataCdi);
 
       const rates = await getRatesObject();
       const expectedSelic = fakeSelic;
@@ -46,21 +46,21 @@ describe('Selic', () => {
       expect(rates).toStrictEqual({ selic: expectedSelic, cdi: expectedCdi, ipca: expectedIpca });
     });
 
-    test('raises error when bcb and cetip scraps parse fail', async () => {
+    test('raises error when bcb and b3 scraps parse fail', async () => {
       const fakeData = '<>INVALID</>';
 
       bcbSelicNock.reply(200, fakeData);
       bcbIpcaNock.reply(200, fakeData);
-      cetipCdiNock.reply(200, fakeData);
+      b3CdiNock.reply(200, fakeData);
 
       const error = async () => await getRatesObject();
       await expect(error()).rejects.toThrow('Parse error');
     });
 
-    test('raises error when bcb and cetip scraps fail', async () => {
+    test('raises error when bcb and b3 scraps fail', async () => {
       bcbSelicNock.replyWithError('Api fails');
       bcbIpcaNock.replyWithError('Api fails');
-      cetipCdiNock.replyWithError('Api fails');
+      b3CdiNock.replyWithError('Api fails');
 
       const error = async () => await getRatesObject();
       return expect(error()).rejects.toThrow('Request error');
@@ -73,12 +73,12 @@ describe('Selic', () => {
       const fakeCdi = 11.11;
       const fakeIpca = 13.44;
       const fakeDataSelic = JSON.stringify({ conteudo: [{ MetaSelic: fakeSelic }]});
-      const fakeDataCdi = JSON.stringify({ taxa: fakeCdi.toString().replace('.', ',') });
+      const fakeDataCdi = JSON.stringify([{ rate: `${fakeCdi}`.replace('.', ','), description: 'TAXA CDI CETIP' }]);
       const fakeDataIpca = JSON.stringify({ conteudo: [{ taxaInflacao: fakeIpca }]});
 
       bcbSelicNock.reply(200, fakeDataSelic);
       bcbIpcaNock.reply(200, fakeDataIpca);
-      cetipCdiNock.reply(200, fakeDataCdi);
+      b3CdiNock.reply(200, fakeDataCdi);
 
       const rates = await getRatesList();
       const expectedSelic = fakeSelic;
@@ -90,21 +90,21 @@ describe('Selic', () => {
       expect(rates[2]).toStrictEqual({ name: IPCA, apy: expectedIpca });
     });
 
-    test('raises error when bcb and cetip scraps parse fail', async () => {
+    test('raises error when bcb and b3 scraps parse fail', async () => {
       const fakeData = '<>INVALID</>';
 
       bcbSelicNock.reply(200, fakeData);
       bcbIpcaNock.reply(200, fakeData);
-      cetipCdiNock.reply(200, fakeData);
+      b3CdiNock.reply(200, fakeData);
 
       const error = async () => await getRatesList();
       return expect(error()).rejects.toThrow('Parse error');
     });
 
-    test('raises error when bcb and cetip scraps fail', async () => {
+    test('raises error when bcb and b3 scraps fail', async () => {
       bcbSelicNock.replyWithError('Api fails');
       bcbIpcaNock.replyWithError('Api fails');
-      cetipCdiNock.replyWithError('Api fails');
+      b3CdiNock.replyWithError('Api fails');
 
       const error = async () => await getRatesList();
       return expect(error()).rejects.toThrow('Request error');
@@ -166,11 +166,11 @@ describe('Selic', () => {
   });
 
   describe('.getCdiRate', () => {
-    test('returns the cdi rates when cetip scraps succeed', async () => {
+    test('returns the cdi rates when b3 scraps succeed', async () => {
       const fakeCdi = 9.11;
-      const fakeData = JSON.stringify({ taxa: fakeCdi.toString().replace('.', ',') });
+      const fakeData = JSON.stringify([{ rate: `${fakeCdi}`.replace('.', ','), description: 'TAXA CDI CETIP' }]);
 
-      cetipCdiNock.reply(200, fakeData);
+      b3CdiNock.reply(200, fakeData);
 
       const value = await getCdiRate();
       const expected = fakeCdi;
@@ -178,16 +178,16 @@ describe('Selic', () => {
       expect(value).toBe(expected);
     });
 
-    test('raises error when cetip scraps parse fail', async () => {
+    test('raises error when b3 scraps parse fail', async () => {
       const fakeData = '<>INVALID</>';
 
-      cetipCdiNock.reply(200, fakeData);
+      b3CdiNock.reply(200, fakeData);
 
       return expect(getCdiRate()).rejects.toThrow('Parse error');
     });
 
-    test('raises error when cetip scraps fail', async () => {
-      cetipCdiNock.replyWithError('Api fails');
+    test('raises error when b3 scraps fail', async () => {
+      b3CdiNock.replyWithError('Api fails');
 
       return expect(getCdiRate()).rejects.toThrow('Request error');
     });

@@ -1,4 +1,4 @@
-import { BCB_API, BCB_SELIC_PATH, BCB_IPCA_PATH, HEADERS } from './constants.js';
+import { BCB_API, BCB_SELIC_PATH, BCB_IPCA_PATH, BCB_HEADERS } from './constants.js';
 import { get } from './fetcher.js';
 /**
  * Fetch selic value from Banco Central do Brasil
@@ -11,7 +11,7 @@ import { get } from './fetcher.js';
 export async function fetchCurrentSelic() {
     try {
         const url = `${BCB_API}${BCB_SELIC_PATH}`;
-        const options = { headers: HEADERS };
+        const options = { headers: BCB_HEADERS };
         const data = await get(url, options);
         const { MetaSelic } = data.conteudo[0];
         return Number(Number(MetaSelic).toFixed(2));
@@ -31,7 +31,7 @@ export async function fetchCurrentSelic() {
 export async function fetchCurrentIpca() {
     try {
         const url = `${BCB_API}${BCB_IPCA_PATH}`;
-        const options = { headers: HEADERS };
+        const options = { headers: BCB_HEADERS };
         const data = await get(url, options);
         const { taxaInflacao } = data.conteudo[0];
         return Number(Number(taxaInflacao).toFixed(2));

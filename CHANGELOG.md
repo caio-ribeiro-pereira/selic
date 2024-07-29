@@ -1,3 +1,10 @@
+## 1.1.0
++ Update all `devDependencies`
++ Fix: changed CDI rate host from cetip.com.br to b3.com.br
++ Refactor: drop Deno support
++ Refactor: added simple integration's test
+* Refactor: drop node version 12, 14 and 16 on ci tests
+
 ## 1.0.0
 + Update all `devDependencies`
 + Refactor: npm script improvements by using `npm-run-all`

@@ -14,7 +14,7 @@ const fetcher_js_1 = require("./fetcher.js");
 async function fetchCurrentSelic() {
     try {
         const url = `${constants_js_1.BCB_API}${constants_js_1.BCB_SELIC_PATH}`;
-        const options = { headers: constants_js_1.HEADERS };
+        const options = { headers: constants_js_1.BCB_HEADERS };
         const data = await (0, fetcher_js_1.get)(url, options);
         const { MetaSelic } = data.conteudo[0];
         return Number(Number(MetaSelic).toFixed(2));
@@ -35,7 +35,7 @@ exports.fetchCurrentSelic = fetchCurrentSelic;
 async function fetchCurrentIpca() {
     try {
         const url = `${constants_js_1.BCB_API}${constants_js_1.BCB_IPCA_PATH}`;
-        const options = { headers: constants_js_1.HEADERS };
+        const options = { headers: constants_js_1.BCB_HEADERS };
         const data = await (0, fetcher_js_1.get)(url, options);
         const { taxaInflacao } = data.conteudo[0];
         return Number(Number(taxaInflacao).toFixed(2));

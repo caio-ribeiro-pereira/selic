@@ -4,7 +4,7 @@ exports.fetchCurrentCdi = void 0;
 const constants_js_1 = require("./constants.js");
 const fetcher_js_1 = require("./fetcher.js");
 /**
- * Fetch cdi value from CETIP
+ * Fetch cdi value from B3 api
  * @returns {Promise<number | never>} current cdi value in apy
  *
  * @throws {Error}
@@ -13,10 +13,11 @@ const fetcher_js_1 = require("./fetcher.js");
  */
 async function fetchCurrentCdi() {
     try {
-        const url = `${constants_js_1.CETIP_API}${constants_js_1.CETIP_CDI_PATH}`;
-        const options = { headers: constants_js_1.HEADERS };
+        const url = `${constants_js_1.B3_API}${constants_js_1.B3_PATH}`;
+        const options = { headers: constants_js_1.B3_HEADERS };
         const data = await (0, fetcher_js_1.get)(url, options);
-        const cdiString = data.taxa.replace(/[.]/g, '').replace(',', '.');
+        const cdiData = data.find((item) => item.description === 'TAXA CDI CETIP');
+        const cdiString = cdiData.rate.replace(/[.]/g, '').replace(',', '.');
         const cdi = Number(Number(cdiString).toFixed(2));
         return cdi;
     }
@@ -25,4 +26,4 @@ async function fetchCurrentCdi() {
     }
 }
 exports.fetchCurrentCdi = fetchCurrentCdi;
-//# sourceMappingURL=cetip.js.map
+//# sourceMappingURL=b3.js.map

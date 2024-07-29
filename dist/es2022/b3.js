@@ -1,7 +1,7 @@
-import { CETIP_API, CETIP_CDI_PATH, HEADERS } from './constants.js';
+import { B3_API, B3_PATH, B3_HEADERS } from './constants.js';
 import { get } from './fetcher.js';
 /**
- * Fetch cdi value from CETIP
+ * Fetch cdi value from B3 api
  * @returns {Promise<number | never>} current cdi value in apy
  *
  * @throws {Error}
@@ -10,10 +10,11 @@ import { get } from './fetcher.js';
  */
 export async function fetchCurrentCdi() {
     try {
-        const url = `${CETIP_API}${CETIP_CDI_PATH}`;
-        const options = { headers: HEADERS };
+        const url = `${B3_API}${B3_PATH}`;
+        const options = { headers: B3_HEADERS };
         const data = await get(url, options);
-        const cdiString = data.taxa.replace(/[.]/g, '').replace(',', '.');
+        const cdiData = data.find((item) => item.description === 'TAXA CDI CETIP');
+        const cdiString = cdiData.rate.replace(/[.]/g, '').replace(',', '.');
         const cdi = Number(Number(cdiString).toFixed(2));
         return cdi;
     }
@@ -21,4 +22,4 @@ export async function fetchCurrentCdi() {
         throw err;
     }
 }
-//# sourceMappingURL=cetip.js.map
+//# sourceMappingURL=b3.js.map

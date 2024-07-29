@@ -1,5 +1,5 @@
 /**
- * Fetch cdi value from CETIP
+ * Fetch cdi value from B3 api
  * @returns {Promise<number | never>} current cdi value in apy
  *
  * @throws {Error}

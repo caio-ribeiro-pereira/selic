@@ -1,24 +1,24 @@
 import * as nock from 'nock'
-import { fetchCurrentCdi } from '../src/cetip.js'
-import { CETIP_API, CETIP_CDI_PATH } from '../src/constants.js'
+import { fetchCurrentCdi } from '../../src/b3.js'
+import { B3_API, B3_PATH } from '../../src/constants.js'
 
-let cetipNock;
+let b3Nock;
 
-describe('cetip', () => {
+describe('unit/b3', () => {
   beforeEach(() => {
-    cetipNock = nock(CETIP_API).get(CETIP_CDI_PATH);
+    b3Nock = nock(B3_API).get(B3_PATH);
   });
 
   afterEach(() => {
-    cetipNock = null;
+    b3Nock = null;
   });
 
   describe('.fetchCurrentCdi', () => {
     test('returns cdi value when request succeed', async () => {
       const fakeCdi = 10.1;
-      const fakeData = JSON.stringify({ taxa: fakeCdi.toString().replace('.', ',') });
+      const fakeData = JSON.stringify([{ rate: `${fakeCdi}`.replace('.', ','), description: 'TAXA CDI CETIP' }]);
 
-      cetipNock.reply(200, fakeData);
+      b3Nock.reply(200, fakeData);
 
       const cdi = await fetchCurrentCdi();
       expect(cdi).toBe(fakeCdi);
@@ -27,7 +27,7 @@ describe('cetip', () => {
     it('raises "Parse error" when request succeed but response is empty', async () => {
       const fakeData = '';
 
-      cetipNock.reply(200, fakeData);
+      b3Nock.reply(200, fakeData);
 
       return expect(fetchCurrentCdi()).rejects.toThrow('Parse error');
     });
@@ -35,13 +35,13 @@ describe('cetip', () => {
     it('raises "Parse error" when request succeed but response is invalid json', async () => {
       const fakeData = '<>INVALID</>';
 
-      cetipNock.reply(200, fakeData);
+      b3Nock.reply(200, fakeData);
 
       return expect(fetchCurrentCdi()).rejects.toThrow('Parse error');
     });
 
     it('raises "Request error" when request fails', async () => {
-      cetipNock.replyWithError('Api fails');
+      b3Nock.replyWithError('Api fails');
 
       return expect(fetchCurrentCdi()).rejects.toThrow('Request error');
     });

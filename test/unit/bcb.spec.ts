@@ -1,11 +1,11 @@
 import * as nock from 'nock'
-import { fetchCurrentSelic, fetchCurrentIpca } from '../src/bcb.js'
-import { BCB_API, BCB_SELIC_PATH, BCB_IPCA_PATH } from '../src/constants.js'
+import { fetchCurrentSelic, fetchCurrentIpca } from '../../src/bcb.js'
+import { BCB_API, BCB_SELIC_PATH, BCB_IPCA_PATH } from '../../src/constants.js'
 
 let bcbSelicNock;
 let bcbIpcaNock;
 
-describe('bcb', () => {
+describe('unit/bcb', () => {
   beforeEach(() => {
     bcbSelicNock = nock(BCB_API).get(BCB_SELIC_PATH);
     bcbIpcaNock = nock(BCB_API).get(BCB_IPCA_PATH);

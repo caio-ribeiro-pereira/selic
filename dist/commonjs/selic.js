@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCdiRate = exports.getIpcaRate = exports.getSelicRate = exports.getRatesList = exports.getRatesObject = void 0;
 const bcb_js_1 = require("./bcb.js");
-const cetip_js_1 = require("./cetip.js");
+const b3_js_1 = require("./b3.js");
 const constants_js_1 = require("./constants.js");
 /**
   * Fetch brazilian selic, cdi and ipca rates apy in object
@@ -58,7 +58,7 @@ exports.getIpcaRate = getIpcaRate;
   * @returns {Promise<number>} CDI rate
   */
 async function getCdiRate() {
-    const cdi = await (0, cetip_js_1.fetchCurrentCdi)();
+    const cdi = await (0, b3_js_1.fetchCurrentCdi)();
     return cdi;
 }
 exports.getCdiRate = getCdiRate;
